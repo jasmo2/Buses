@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :buses
+
+  resources :records
+
   root 'users#index'
   devise_for :users 
 
