@@ -7,15 +7,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-   <h4>header</h4>
-<% end%>
-
-<%= yield %>
-
-<% if user_signed_in? %>
-   <h4>footer</h4>
-<% end%>
-
+    <div id="wrapper">
+        <%= yield %>
+    </div>
 </body>
 </html>

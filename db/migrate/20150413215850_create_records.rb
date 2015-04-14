@@ -4,7 +4,7 @@ class CreateRecords < ActiveRecord::Migration
       t.time :time
       t.integer :quantity
       t.integer :register_type
-
+      
       t.timestamps null: false
     end
   end

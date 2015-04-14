@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 		unless user_signed_in?
 			render 'index'
 		else
-			render 'admin_index'
+			render 'records/new'
 		end
 	end
 	def show

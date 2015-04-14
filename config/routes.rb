@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :buses
+  root 'users#index'
+  post '/' => 'users#index' ,as: :user_session
+  resources :users
 
   resources :records
 
-  root 'users#index'
   devise_for :users 
 
 
