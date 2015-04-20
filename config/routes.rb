@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  # resources :users
+
+  
   root 'users#index'
-  post '/' => 'users#index' ,as: :user_session
-  resources :users
-
-  resources :records
-
   devise_for :users 
+  
+  authenticate :user do
+    resources :records
+  end
+  # post '/' => 'users#index' ,as: :user_session
 
 
   # The priority is based upon order of creation: first created -> highest priority.
