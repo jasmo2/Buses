@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413220925) do
+ActiveRecord::Schema.define(version: 20150421201243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bus_routes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "buses", force: :cascade do |t|
     t.string   "create"
@@ -28,15 +34,28 @@ ActiveRecord::Schema.define(version: 20150413220925) do
     t.time     "time"
     t.integer  "quantity"
     t.integer  "register_type"
+    t.integer  "user_id",       null: false
+    t.integer  "trip_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "records", ["trip_id"], name: "index_records_on_trip_id", unique: true, using: :btree
+  add_index "records", ["user_id"], name: "index_records_on_user_id", unique: true, using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.boolean  "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.integer  "direction"
+    t.time     "star_time",     null: false
+    t.string   "neighbourhood"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
