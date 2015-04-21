@@ -1,0 +1,18 @@
+.horizontal-form{
+  .form-group{
+    @extend .row;
+    input{
+      margin-top: 20px;
+    }
+    .clockpicker{
+      margin-top: 20px;
+      .timerInput{
+        margin-top: 0;
+        height: 42px;
+      }
+    }
+  }
+  .pull-right.btn-lg.btn-primary{
+    margin-top: 20px;
+  }
+}

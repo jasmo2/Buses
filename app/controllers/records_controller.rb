@@ -6,6 +6,6 @@ class RecordsController < ApplicationController
     end
     private
     def bus_params
-        params.require(:bus).permit(:time,:quantity,:register_type,:)
+        params.require(:bus).permit(:time,:quantity,:register_type)
     end
 end
