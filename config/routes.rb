@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   # resources :users
 
   
-  root 'users#index'
   devise_for :users 
   
   authenticate :user do
+    # root to: 'records#new', as: :authenticated_root
     resources :records
   end
+  root 'users#index'
   # post '/' => 'users#index' ,as: :user_session
 
 
