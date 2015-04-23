@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   devise_for :users 
   
   authenticate :user do
-    # root to: 'records#new', as: :authenticated_root
     resources :records
   end
   root 'users#index'
-  # post '/' => 'users#index' ,as: :user_session
+  post '/checkpoint' => 'users#checkpoint' ,as: :user_checkpoint
 
 
   # The priority is based upon order of creation: first created -> highest priority.
