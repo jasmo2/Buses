@@ -10,7 +10,8 @@
               <h3>Númeración</h3>
             </div>
             <div class="col-md-5 ">
-              <%= f.number_field :quantity, class:"form-control", placeholder:"Número de pasajeros" %>
+              <!-- The following options are for number-pad for iOS -->
+              <%= f.number_field :quantity, class:"form-control",min: 0, inputmode: "numeric", pattern: "[0-9]*", title: "Non-negative integral number", placeholder:"Número de pasajeros" %>
             </div>            
           </div>
           <div class="form-group">

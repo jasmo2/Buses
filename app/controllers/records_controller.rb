@@ -11,7 +11,6 @@ class RecordsController < ApplicationController
       flash[:alert] = "No se ah podido registrar intentelo de nuevo"
     end  
     redirect_to new_record_path 
-
   end
   private
   def record_params
