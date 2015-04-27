@@ -1,10 +1,10 @@
 class RecordsController < ApplicationController
   before_action :role_admin
   def new
-    @record = Record.new()
   end
   def create
     record = Record.new(record_params)
+    record.register_type = cookies[:checkpoint]
     if record.save
       flash[:notice] = "El registro ha sido exitoso"
     else
@@ -14,7 +14,7 @@ class RecordsController < ApplicationController
   end
   private
   def record_params
-    params.require(:record).permit(:time,:quantity,:bus_id)
+    params.permit(:time,:quantity,:user_id,:bus_id)
   end
   def role_admin
     if current_user.reader?
