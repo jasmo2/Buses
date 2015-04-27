@@ -43,36 +43,30 @@ ActiveRecord::Schema.define(version: 20150421201243) do
   add_index "records", ["trip_id"], name: "index_records_on_trip_id", unique: true, using: :btree
   add_index "records", ["user_id"], name: "index_records_on_user_id", unique: true, using: :btree
 
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "done"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "trips", force: :cascade do |t|
     t.integer  "direction"
-    t.time     "star_time",     null: false
+    t.date     "operation_date", null: false
+    t.integer  "bus_id"
+    t.integer  "bus_routes_id"
     t.string   "neighbourhood"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",               default: "", null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "user",                   default: "default_user", null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                  default: "",             null: false
+    t.string   "encrypted_password",     default: "",             null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,              null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "roles"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
