@@ -7,7 +7,11 @@ class UsersController < ApplicationController
 			case current_user.role
 			when "admin"
 			when "editor"
-				render :checkpoint
+				if cookies[:checkpoint]
+					redirect_to controller: "records", action: "new"
+				else
+					render :checkpoint
+				end
 			when "reader"
 			end
 			

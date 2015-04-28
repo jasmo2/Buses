@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   
   devise_for :users 
+  root 'users#index'
   
   authenticate :user do
     resources :records, except: [:index]
   end
   post '/checkpoint' => 'users#checkpoint' ,as: :user_checkpoint
-  root 'users#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
