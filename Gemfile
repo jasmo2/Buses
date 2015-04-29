@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 #PostgreSQL
 gem 'pg'
-
+# Locale data for Ruby on Rails I18n 
+gem 'rails-i18n', '~> 4.0.0'
 
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
