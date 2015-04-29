@@ -8,7 +8,7 @@ class RecordsController < ApplicationController
     if record.save
       flash[:notice] = "El registro ha sido exitoso"
     else
-      flash[:alert] = "No se ah podido registrar intentelo de nuevo"
+      flash[:alert] = record.errors.full_messages
     end  
     redirect_to new_record_path 
   end
