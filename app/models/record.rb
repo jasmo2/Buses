@@ -19,7 +19,7 @@ class Record < ActiveRecord::Base
   validate :bus_transit_this_day
   attr_accessor :bus_id
   enum register_type: [:terminal, :control]
-  before_save :register_type_N_time ,:get_trip
+  before_validation :get_trip, :register_type_N_time
 
   private
   def bus_transit_this_day
@@ -27,9 +27,9 @@ class Record < ActiveRecord::Base
   end
   def get_trip
     trip = Trip.where(bus_id: self.bus_id, operation_date:  Time.now.in_time_zone(-5).to_date).take
-    self.trip_id = trip != nil ? trip.id : nil 
+    self.trip_id = if trip != nil then trip.id else nil end
   end
   def register_type_N_time
-   self.time = Time.zone.now()
+   self.time = Time.now.in_time_zone(-5)
   end
 end
