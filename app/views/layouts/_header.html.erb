@@ -8,6 +8,7 @@
         </button>
        <!--  <a class="navbar-brand" href="index.html">Administración Coonatra</a>-->
        <%= link_to("Administración Coonatra", root_path, class: "navbar-brand") %>
+       <div class="navbar-brand"><%= header_role(current_user.role) %></div>
     </div>
     <!-- /.navbar-header -->
 
@@ -46,7 +47,9 @@
 <-->            
                 <%if current_user.editor? %>
                 <li>
-                    <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Editor</a>
+                    <%= link_to new_record_path do %>
+                        <i class="fa fa-dashboard fa-fw"></i> Editor
+                    <% end  %>
                 </li>
                 <% end %>
 
