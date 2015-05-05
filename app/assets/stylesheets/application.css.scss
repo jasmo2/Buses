@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require font-awesome
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -19,6 +20,8 @@
 @import "horizontal-form";
 @import "checkpoint-form";
 @import "records";
+@import "bus_routes";
+
 .login-panel {
   margin-top: 0%;
 }
