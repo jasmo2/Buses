@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 					render :checkpoint
 				end
 			when "reader"
-					redirect_to controller: "bus_routes", action: "new"
+					redirect_to controller: "bus_routes", action: "index"
 			end
 		end
 	end

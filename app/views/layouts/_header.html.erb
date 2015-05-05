@@ -55,7 +55,9 @@
 
                 <% if  current_user.admin? || current_user.reader?%>
                 <li>
-                    <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                    <%= link_to bus_routes_path do %>
+                        <i class="fa fa-table fa-fw"></i> Tablas
+                    <% end  %>
                 </li>
                 
                 <li>
