@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   authenticate :user do
     resources :records, except: [:index]
+    resources :bus_routes, except: [:index]
   end
   post '/checkpoint' => 'users#checkpoint' ,as: :user_checkpoint
 
