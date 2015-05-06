@@ -2,9 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.panel.panel-default {
-  margin-top: 6em;
-  .dataTable_wrapper {
-    overflow-x: auto;
+.tables{
+  .row:first-child{
+  margin-top: 2em;
+    .table{
+      margin-bottom: 1em;
+    }
+  }
+  .panel.panel-default {
+    .dataTable_wrapper {
+      overflow-x: auto;
+    }
+  }
+  .btn-file {
+      position: relative;
+      overflow: hidden;
+  }
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 40%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }
+  .import {
+    margin-top: 0.8em;
   }
 }
