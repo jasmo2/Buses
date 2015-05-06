@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'table_print'
 # Authentication with devise
 gem 'devise'
-
+# Excel import/export
+gem 'roo', '~> 2.0.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
