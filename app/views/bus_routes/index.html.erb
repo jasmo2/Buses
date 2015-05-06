@@ -1,8 +1,33 @@
-<div id="page-wrapper" style="min-height: 650px;">
+<div id="page-wrapper" class="tables" style="min-height: 650px;">
   <div class="container-fluid dashboard">
     <div class="row">
     <div class="col-lg-12"
       <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-info">  
+          <div class="panel-heading">
+            <h3 class="panel-title">Archivos de Excel</h3>
+          </div>
+          <div class="panel-body">
+            <%= form_tag import_bus_routes_path, multipart: true do %>
+              <div id="file-upload" class="input-group">
+                  <span class="input-group-btn">
+                      <span class="btn btn-info btn-file">
+                          Buscar:  <%= file_field_tag :file %>
+                      </span>
+                  </span>
+                  <input type="text" class="form-control" readonly="">
+              </div>
+
+              <div class="input-group import">
+                <%= submit_tag "Importar", class: "btn btn-primary" %>
+              </div><!-- /btn-group --> 
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-12">
