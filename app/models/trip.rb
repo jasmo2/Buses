@@ -23,6 +23,8 @@ class Trip < ActiveRecord::Base
 
   private
   def change_to_date
-    self.start_time = Time.at(self.start_time).utc.strftime("%H:%M")
+    if self.start_time != nil
+      self.start_time = Time.at(self.start_time).utc.strftime("%H:%M")
+    end
   end
 end
