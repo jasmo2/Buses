@@ -16,9 +16,9 @@ class BusRoute < ActiveRecord::Base
     headers = ["direction","start_time","neighbourhood","bus_routes_id"]
     (3..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      bus_route = where(name: row[0])
-      if bus_route.empty?
-        bus_route = create(name: row[0])
+      @bus_route = where(name: row[0])
+      if @bus_route.empty?
+        @bus_route = create(name: row[0])
         trips_data = trips_hashing(
           headers,direction_conversion(
             row.drop(1).each_slice(3).to_a
@@ -26,7 +26,7 @@ class BusRoute < ActiveRecord::Base
         )
         Trip.create(trips_data)
       else
-        bus_route = bus_route.first
+        @bus_route = @bus_route.first
         trips_data = trips_hashing(headers,direction_conversion(row.drop(1).each_slice(3).to_a))
       end
     end
@@ -55,7 +55,7 @@ class BusRoute < ActiveRecord::Base
   end
   def self.trips_hashing(headers,trips_data)
     trips_data.map! do |trip_data|
-      trip_data << self.id
+      trip_data << @bus_route.id
       Hash[[headers, trip_data].transpose].delete_if { |key, value| value.blank? }
     end
 
@@ -66,10 +66,10 @@ class BusRoute < ActiveRecord::Base
         when ".csv" then Roo::Csv.new(file.path)
         when ".xls" then Roo::Excel.new(file.path)
         when ".xlsx" then Roo::Excelx.new(file.path)
-        else raise "Tipo de Archivo desconocido #{file.original_filename}"
+        else raise ArgumentError, "Tipo de Archivo desconocido #{file.original_filename}"
       end
     else
-     raise "Tipo de Archivo desconocido #{file.original_filename}"
+     raise ArgumentError, "Tipo de Archivo desconocido #{file.original_filename}"
     end
   end
 end
