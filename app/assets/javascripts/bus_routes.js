@@ -21,4 +21,7 @@ $(document).ready(function() {
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.trigger('fileselect', [numFiles, label]);
     });
+    $('.btn.btn-primary').on('click', function () {
+      $('body').modalmanager('loading');
+    })
 } );
