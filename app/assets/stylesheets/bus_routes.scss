@@ -71,5 +71,12 @@ body.modal-open,
   }
   .import {
     margin-top: 0.8em;
+    width: 100%;
+    display: block;
+    .col-xs-offset-1.col-xs-8.alert{
+      margin-bottom: 0px;
+      padding: 6px 12px;
+      text-align: center;
+    }
   }
 }
