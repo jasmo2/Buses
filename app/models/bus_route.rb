@@ -13,7 +13,7 @@ class BusRoute < ActiveRecord::Base
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    headers = ["direction","start_time","neighbourhood","bus_routes_id"]
+    headers = ["direction","start_time","neighbourhood","bus_routes_id","trip_column"]
     (3..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
       @bus_route = where(name: row[0])
@@ -22,12 +22,17 @@ class BusRoute < ActiveRecord::Base
         trips_data = trips_hashing(
           headers,direction_conversion(
             row.drop(1).each_slice(3).to_a
+            )
           )
-        )
         Trip.create(trips_data)
       else
-        @bus_route = @bus_route.first
-        trips_data = trips_hashing(headers,direction_conversion(row.drop(1).each_slice(3).to_a))
+        @bus_route = @bus_route.first 
+        trips_data = trips_hashing(
+          headers,direction_conversion(
+            row.drop(1).each_slice(3).to_a
+            )
+          )
+        Trip.update_multiple(trips_data)
       end
     end
   end
@@ -54,8 +59,15 @@ class BusRoute < ActiveRecord::Base
     end
   end
   def self.trips_hashing(headers,trips_data)
+    trip_column = 0
+    # eliminates all nil
+    trips_data.each &:compact!
+    # eliminates empty arrays
+    trips_data.reject! { |c| c.empty? }
     trips_data.map! do |trip_data|
       trip_data << @bus_route.id
+      trip_data << trip_column
+      trip_column += 1
       Hash[[headers, trip_data].transpose].delete_if { |key, value| value.blank? }
     end
 
