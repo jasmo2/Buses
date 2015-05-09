@@ -32,7 +32,9 @@ class BusRoute < ActiveRecord::Base
             row.drop(1).each_slice(3).to_a
             )
           )
-        Trip.update_multiple(trips_data)
+        unless Trip.update_multiple(trips_data)
+          raise ArgumentError, "No se ha podido actulizar los datos"
+        end
       end
     end
   end
@@ -53,7 +55,7 @@ class BusRoute < ActiveRecord::Base
           when ""
             trip_data[0] = ""
           else
-            raise ArgumentError, "'#{value}' no es una dirección valida"
+            raise ArgumentError, "'#{value}' no es una dirección valida."
         end
       end
     end
@@ -81,7 +83,7 @@ class BusRoute < ActiveRecord::Base
         else raise ArgumentError, "Tipo de Archivo desconocido #{file.original_filename}"
       end
     else
-     raise ArgumentError, "Tipo de Archivo desconocido #{file.original_filename}"
+     raise ArgumentError, "Tipo de Archivo vacio"
     end
   end
 end
