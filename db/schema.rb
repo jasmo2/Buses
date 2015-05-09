@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507223859) do
+ActiveRecord::Schema.define(version: 20150509034527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150507223859) do
     t.integer  "direction"
     t.date     "operation_date"
     t.integer  "bus_id"
-    t.integer  "bus_routes_id"
+    t.integer  "bus_route_id"
     t.string   "neighbourhood"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
