@@ -1,9 +1,10 @@
 <div id="page-wrapper" class="tables" style="min-height: 650px;">
   <div class="container-fluid dashboard">
     <div class="row">
-    <div class="col-lg-12"
+      <div class="col-lg-12"
       <!-- /.col-lg-12 -->
     </div>
+    <% if  current_user.admin? %>
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-info">  
@@ -12,23 +13,25 @@
           </div>
           <div class="panel-body">
             <%= form_tag import_bus_routes_path, multipart: true do %>
-              <div id="file-upload" class="input-group">
-                  <span class="input-group-btn">
-                      <span class="btn btn-info btn-file">
-                          Buscar:  <%= file_field_tag :file %>
-                      </span>
-                  </span>
-                  <input type="text" class="form-control" readonly="">
-              </div>
+            <div id="file-upload" class="input-group">
+              <span class="input-group-btn">
+                <span class="btn btn-info btn-file">
+                  Buscar:  <%= file_field_tag :file %>
+                </span>
+              </span>
+              <input type="text" class="form-control" readonly="">
+            </div>
 
-              <div class="input-group import">
-                <%= submit_tag "Importar", class: "btn btn-primary" %>
-              </div><!-- /btn-group --> 
+            <div class="input-group import">
+              <%= submit_tag "Importar", class: "btn btn-primary col-xs-3" %>
+            <%=  flash_import(flash) %>
+            </div><!-- /btn-group --> 
             <% end %>
           </div>
         </div>
       </div>
     </div>
+    <% end %>
     <div class="row">
       <div class="col-lg-12">
         <div class="panel panel-default">
@@ -42,20 +45,8 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Viaje 1</th>
-                    <th>Viaje 2</th>
-                    <th>Viaje 3</th>
-                    <th>Viaje 4</th>
-                    <th>Viaje 5</th>
-                    <th>Viaje 6</th>
-                    <th>Viaje 7</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>A23</td>
-                    <td>
-                      <table class="table table-striped table-bordered table-hover">
+                    <th>Viaje 1
+                      <table class="inner-table">
                         <thead>
                           <tr>
                             <th>Dirección</th>
@@ -63,239 +54,79 @@
                             <th>Barrio</th>
                           </tr>
                         </thead>
-                        <tbody>
-                         <td>D</td>
-                         <td>12:00</td>
-                         <td>Nueva Granada</td>
-                       </tbody>
+                      </table>
+                    </th>
+                    <th>Viaje 2
+                      <table class="inner-table">
+                       <thead>
+                         <tr>
+                           <th>Dirección</th>
+                           <th>Hora</th>
+                           <th>Barrio</th>
+                         </tr>
+                       </thead>
                      </table>
-                   </td>
-                   <td>
-                    <table class="table table-striped table-bordered table-hover">
-                      <thead>
-                        <tr>
-                          <th>Dirección</th>
-                          <th>Hora</th>
-                          <th>Barrio</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                       <td></td>
-                       <td></td>
-                       <td></td>
-                     </tbody>
+                   </th>
+                   <th>Viaje 3
+                    <table class="inner-table">
+                     <thead>
+                       <tr>
+                         <th>Dirección</th>
+                         <th>Hora</th>
+                         <th>Barrio</th>
+                       </tr>
+                     </thead>
                    </table>
-                 </td>
-                 <td>
-                  <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th>Dirección</th>
-                        <th>Hora</th>
-                        <th>Barrio</th>
-                      </tr>
-                    </thead>
+                 </th>
+               </tr>
+             </thead>
+             <tbody>
+              <tr>
+                <td>A23</td>
+                <td>
+                  <table class="inner-table">
                     <tbody>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>D</td>
+                     <td>12:00</td>
+                     <td>N</td>
                    </tbody>
                  </table>
                </td>
-               <td>
-                <table class="table table-striped table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Dirección</th>
-                      <th>Hora</th>
-                      <th>Barrio</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                 </tbody>
-               </table>
-             </td>
-             <td>
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>Dirección</th>
-                    <th>Hora</th>
-                    <th>Barrio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-               </tbody>
-             </table>
-           </td>
-           <td>
-            <table class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>Dirección</th>
-                  <th>Hora</th>
-                  <th>Barrio</th>
-                </tr>
-              </thead>
-              <tbody>
-               <td></td>
-               <td></td>
-               <td></td>
+                <td>
+                  <table class="inner-table">
+                    <tbody>
+                     <td>D</td>
+                     <td>12:00</td>
+                     <td>N</td>
+                   </tbody>
+                 </table>
+               </td>
+                <td>
+                  <table class="inner-table">
+                    <tbody>
+                     <td>D</td>
+                     <td>12:00</td>
+                     <td>N</td>
+                   </tbody>
+                 </table>
+               </td>
+
+              </tr>
+
+
              </tbody>
            </table>
-         </td>
-         <td>
-          <table class="table table-striped table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>Dirección</th>
-                <th>Hora</th>
-                <th>Barrio</th>
-              </tr>
-            </thead>
-            <tbody>
-             <td></td>
-             <td></td>
-             <td></td>
-           </tbody>
-         </table>
-       </td>
-     </tr>
-     <tr>
-      <td>B46</td>
-      <td>
-        <table class="table table-striped table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Dirección</th>
-              <th>Hora</th>
-              <th>Barrio</th>
-            </tr>
-          </thead>
-          <tbody>
-           <td>D</td>
-           <td>12:00</td>
-           <td>Nueva Granada</td>
-         </tbody>
-       </table>
-     </td>
-     <td>
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Dirección</th>
-            <th>Hora</th>
-            <th>Barrio</th>
-          </tr>
-        </thead>
-        <tbody>
-         <td>D</td>
-         <td>12:00</td>
-         <td>Nueva Granada</td>
-       </tbody>
-     </table>
-   </td>
-   <td>
-    <table class="table table-striped table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Dirección</th>
-          <th>Hora</th>
-          <th>Barrio</th>
-        </tr>
-      </thead>
-      <tbody>
-       <td>D</td>
-       <td>12:00</td>
-       <td>Nueva Granada</td>
-     </tbody>
-   </table>
- </td>
- <td>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Dirección</th>
-        <th>Hora</th>
-        <th>Barrio</th>
-      </tr>
-    </thead>
-    <tbody>
-     <td>D</td>
-     <td>12:00</td>
-     <td>Nueva Granada</td>
-   </tbody>
- </table>
-</td>
-<td>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Dirección</th>
-        <th>Hora</th>
-        <th>Barrio</th>
-      </tr>
-    </thead>
-    <tbody>
-     <td>D</td>
-     <td>12:00</td>
-     <td>Nueva Granada</td>
-   </tbody>
- </table>
-</td>
-<td>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Dirección</th>
-        <th>Hora</th>
-        <th>Barrio</th>
-      </tr>
-    </thead>
-    <tbody>
-     <td>D</td>
-     <td>12:00</td>
-     <td>Nueva Granada</td>
-   </tbody>
- </table>
-</td>
-<td>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Dirección</th>
-        <th>Hora</th>
-        <th>Barrio</th>
-      </tr>
-    </thead>
-    <tbody>
-     <td>D</td>
-     <td>12:00</td>
-     <td>Nueva Granada</td>
-   </tbody>
- </table>
-</td>
-</tr>
-
-</tbody>
-</table>
-</div>
-<!-- /.table-responsive -->
-<div class="well">
-  <h4>Información de Tablas para  <%= (l Time.now, format: :short).capitalize %></h4>
-</div>
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
+         </div>
+         <!-- /.table-responsive -->
+         <div class="well">
+          <h4>Información de Tablas para  <%= (l Time.now, format: :short).capitalize %></h4>
+        </div>
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 </div>
