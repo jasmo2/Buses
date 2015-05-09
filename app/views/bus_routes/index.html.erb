@@ -45,75 +45,23 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Viaje 1
-                      <table class="inner-table">
-                        <thead>
-                          <tr>
-                            <th>Dirección</th>
-                            <th>Hora</th>
-                            <th>Barrio</th>
-                          </tr>
-                        </thead>
-                      </table>
-                    </th>
-                    <th>Viaje 2
-                      <table class="inner-table">
-                       <thead>
-                         <tr>
-                           <th>Dirección</th>
-                           <th>Hora</th>
-                           <th>Barrio</th>
-                         </tr>
-                       </thead>
-                     </table>
-                   </th>
-                   <th>Viaje 3
-                    <table class="inner-table">
-                     <thead>
-                       <tr>
-                         <th>Dirección</th>
-                         <th>Hora</th>
-                         <th>Barrio</th>
-                       </tr>
-                     </thead>
-                   </table>
-                 </th>
+                    <% @counter.times do |i|%>
+                      <th>Viaje <%= i + 1 %>
+                        <table class="inner-table">
+                          <thead>
+                            <tr>
+                              <th>Dirección</th>
+                              <th>Hora</th>
+                              <th>Barrio</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </th>
+                    <% end %>
                </tr>
              </thead>
              <tbody>
-              <tr>
-                <td>A23</td>
-                <td>
-                  <table class="inner-table">
-                    <tbody>
-                     <td>D</td>
-                     <td>12:00</td>
-                     <td>N</td>
-                   </tbody>
-                 </table>
-               </td>
-                <td>
-                  <table class="inner-table">
-                    <tbody>
-                     <td>D</td>
-                     <td>12:00</td>
-                     <td>N</td>
-                   </tbody>
-                 </table>
-               </td>
-                <td>
-                  <table class="inner-table">
-                    <tbody>
-                     <td>D</td>
-                     <td>12:00</td>
-                     <td>N</td>
-                   </tbody>
-                 </table>
-               </td>
-
-              </tr>
-
-
+              <%= table_routes(@bus_routes,@counter) %>
              </tbody>
            </table>
          </div>
