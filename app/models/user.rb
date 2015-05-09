@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  username               :string           default(""), not null
+#  role                   :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -16,15 +17,14 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
-#  roles                  :integer
 #
 
 class User < ActiveRecord::Base
+  enum role: [:admin , :editor , :reader]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
   has_many :records
-  enum roles: [:admin, :editor, :reader]
 end
