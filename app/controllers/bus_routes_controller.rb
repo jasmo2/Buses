@@ -1,19 +1,20 @@
 class BusRoutesController < ApplicationController
+  before_action :role_editor
   def index
   end
 
-  def new
+  def import
+    begin
+      BusRoute.import(params[:file])
+      flash[:notice] = "Los archivos se han cargado correctamente"
+    rescue ArgumentError => e
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "Exception catched"
+      puts e
+      puts ""
+      flash[:alert] = e.message
+    end
+      redirect_to action: "index", notice: "Rutas importadas"
   end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
+ 
 end

@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :role_admin
+  before_action :role_reader
   before_action :validates_cookies
   def new
   end
@@ -16,12 +16,7 @@ class RecordsController < ApplicationController
   private
   def record_params
     params.permit(:quantity,:user_id,:bus_id)
-  end
-  def role_admin
-    if current_user.reader?
-      redirect_to controller: "bus_routes", action:index
-    end
-  end  
+  end 
   def validates_cookies
     if !cookies[:checkpoint]
       redirect_to controller: "users", action: "index"
