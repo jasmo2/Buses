@@ -16,8 +16,6 @@ class BusRoute < ActiveRecord::Base
     headers = ["direction","start_time","neighbourhood","bus_route_id","trip_column"]
     (3..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-      puts "row[#{i}] = #{row} "
       @bus_route = where(name: row[0])
       if @bus_route.empty?
         @bus_route = create(name: row[0])

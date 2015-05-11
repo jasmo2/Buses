@@ -31,7 +31,6 @@ class Trip < ActiveRecord::Base
       end
       trips <<  where(search_field)[0]
     end
-    puts "trips #{trips}"
     return trips
   end
   def self.update_multiple(trips_data, multiple_trips)
