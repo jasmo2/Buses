@@ -26,13 +26,13 @@ class Trip < ActiveRecord::Base
     update_multiple_transaction = true
     transaction do 
       trips_data.each do |trip_data|  
+        # byebug
         trip = where(
           trip_column: trip_data["trip_column"], 
-          bus_routes_id: trip_data["bus_routes_id"]
+          bus_route_id: trip_data["bus_route_id"]
           )
         unless trip[0].update(trip_data)
           update_multiple_transaction = false
-          raise ActiveRecord::Rollback
         end
       end
     end
