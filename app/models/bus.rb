@@ -17,8 +17,21 @@ class Bus < ActiveRecord::Base
   def self.add_routes(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
+    header[1] = "plate_license"
     (2..spreadsheet.last_row).each do |i|
       byebug
+      row = spreadsheet.row(i)
+      bus = where(plate_license: row[1])
+      raise ArgumentError, "Autobuses y placas no concuerdan" if bus.empty?
+      for index in (2...row.count)
+        bus_route = BusRoute.where(name: row[index])[0]
+        byebug
+        trips_data = bus_route.trips
+        multiple_trips = Trip.where_multiple(trips_data,"bus_id")
+        unless Trip.update_multiple(trips_data,multiple_trips)
+          raise ArgumentError, "No se ha podido actulizar los datos"
+        end
+      end
     end
   end
 
