@@ -25,10 +25,4 @@ class BusRoutesController < ApplicationController
     end
       redirect_to action: "index", notice: "Rutas importadas"
   end
- private
- def not_admin
-  unless current_user.admin?
-    redirect_to action: "index"
-  end
- end
 end

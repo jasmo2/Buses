@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
       redirect_to controller: "bus_routes", action: "index"
     end
   end 
+ def not_admin
+  unless current_user.admin?
+    redirect_to action: "index"
+  end
+ end
 end
