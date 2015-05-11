@@ -22,16 +22,23 @@ class Trip < ActiveRecord::Base
   validates :start_time, numericality: true
   after_validation :change_to_date
 
-  def self.update_multiple(trips_data)
+  def self.where_multiple(trips_data, *search_fields)
+    trips = []
+    trips_data.each do |trip_data|
+    search_field = Hash.new
+      search_fields.each do |field|  
+        search_field[field] = trip_data[field] 
+      end
+      trips <<  where(search_field)[0]
+    end
+    puts "trips #{trips}"
+    return trips
+  end
+  def self.update_multiple(trips_data, multiple_trips)
     update_multiple_transaction = true
     transaction do 
-      trips_data.each do |trip_data|  
-        # byebug
-        trip = where(
-          trip_column: trip_data["trip_column"], 
-          bus_route_id: trip_data["bus_route_id"]
-          )
-        unless trip[0].update(trip_data)
+      trips_data.each_with_index do |trip_data,index|  
+        unless multiple_trips[index].update(trip_data)
           update_multiple_transaction = false
         end
       end

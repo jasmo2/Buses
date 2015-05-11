@@ -13,9 +13,11 @@ class BusRoute < ActiveRecord::Base
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    headers = ["direction","start_time","neighbourhood","bus_routes_id","trip_column"]
+    headers = ["direction","start_time","neighbourhood","bus_route_id","trip_column"]
     (3..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "row[#{i}] = #{row} "
       @bus_route = where(name: row[0])
       if @bus_route.empty?
         @bus_route = create(name: row[0])
@@ -32,7 +34,8 @@ class BusRoute < ActiveRecord::Base
             row.drop(1).each_slice(3).to_a
             )
           )
-        unless Trip.update_multiple(trips_data)
+        multiple_trips = Trip.where_multiple(trips_data,"trip_column","bus_route_id")
+        unless Trip.update_multiple(trips_data,multiple_trips)
           raise ArgumentError, "No se ha podido actulizar los datos"
         end
       end
