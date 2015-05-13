@@ -1,0 +1,12 @@
+<%= simple_form_for @bus do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :id, label: "Numero" %>
+
+  <%= f.input :plate_license, placeholder: 'AAA 345', label: "Placa" %>
+
+  <%= f.input :driver_name, label: "Conductor" %>
+
+
+  <%= f.button :submit ,value: "Enviar"%>
+<% end %>

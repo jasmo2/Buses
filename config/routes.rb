@@ -11,9 +11,10 @@ Rails.application.routes.draw do
       collection { post :import }
     end
     get '/programacion' => 'buses#index' ,as: :programacion
-    resources :buses, only: [] do
+    resources :buses, except: [:new, :index] do
       collection { post :import }
     end
+    get '/autobuses' => 'buses#list_buses'
   end
   post '/checkpoint' => 'users#checkpoint' ,as: :user_checkpoint
 
