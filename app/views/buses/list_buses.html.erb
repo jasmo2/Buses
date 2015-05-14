@@ -4,11 +4,12 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Autobuses
                     <% if current_user.admin? %>
-                        <%= link_to autobuses_path, class: "btn-lg btn-default" do %>
+                        <%= link_to new_bus_path, remote: true, class: "btn-lg btn-default" do %>
                             <i class="fa fa-bus fa-fw"></i> Crear
                         <% end  %>
                     <% end  %>
                 </h1>
+                <%= flash_import(flash) %>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -20,9 +21,9 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <div id="content" class="row">
-            <div class="col-lg-12">
-                <%= render "buses/form" %>
+        <div class="row">
+            <div id="content" class="col-lg-12">
+
             </div>
             <!-- /.col-lg-12 -->
         </div>
