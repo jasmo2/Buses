@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       collection { post :import }
     end
     get '/programacion' => 'buses#index' ,as: :programacion
-    resources :buses, except: [:new, :index] do
+    resources :buses, except: [:index] do
       collection { post :import }
     end
     get '/autobuses' => 'buses#list_buses'
