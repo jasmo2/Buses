@@ -27,8 +27,7 @@ formValidation = function () {
     },
         
     submitHandler: function(form) {
-      debugger
-        form.submit();
+      form.submit();
     }
   });
 
