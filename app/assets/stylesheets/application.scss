@@ -28,3 +28,9 @@
 .login-panel {
   margin-top: 0%;
 }
+#bus-form .disabled {
+  color: #777;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+}
