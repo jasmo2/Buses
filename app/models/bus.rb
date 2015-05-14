@@ -3,17 +3,19 @@
 # Table name: buses
 #
 #  id            :integer          not null, primary key
-#  create        :string
-#  update        :string
 #  plate_license :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 
 class Bus < ActiveRecord::Base
+  attr_accessor :driver_name
   belongs_to :user
   has_many :trips
   has_many :routes, through: :trips
+  validates :id, presence: true
+  validates :plate_license, presence: true
+  validates :id, numericality: { only_integer: true }
   def self.add_routes(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
