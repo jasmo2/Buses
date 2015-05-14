@@ -1,6 +1,7 @@
 class BusesController < ApplicationController
   before_action :role_editor
   before_action :new_bus, only: [:new]
+  before_action :modify_bus, only: [:edit,:destroy]
   before_action :not_admin, only: [:import]
 
   def index
@@ -8,7 +9,18 @@ class BusesController < ApplicationController
   end
 
   def list_buses
-    
+    @buses = Bus.all
+  end
+  def edit
+    render "new.js.erb"
+  end
+
+  def update
+    redirect_to action: "list_buses"
+  end
+  def destroy
+    @bus.destroy
+    redirect_to action: "list_buses"
   end
 
   def new
@@ -39,9 +51,13 @@ class BusesController < ApplicationController
     end
       redirect_to action: "index", notice: "Rutas importadas"
   end  
+
   private
   def new_bus
     @bus = Bus.new
+  end
+  def modify_bus
+    @bus = Bus.find(params[:id])
   end
   def bus_params
     params.require(:bus).permit(:id,:plate_license,:driver_name)
