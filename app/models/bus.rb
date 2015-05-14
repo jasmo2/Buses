@@ -6,13 +6,14 @@
 #  plate_license :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  user_id       :integer
 #
 
 class Bus < ActiveRecord::Base
   attr_accessor :driver_name
   belongs_to :user
   has_many :trips
-  has_many :routes, through: :trips
+  has_many :bus_routes, through: :trips
   validates :id, presence: true
   validates :plate_license, presence: true
   validates :id, numericality: { only_integer: true }

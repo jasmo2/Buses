@@ -1,5 +1,5 @@
 module BusRoutesHelper
-  def flash_import(flash)
+  def flash_routes(flash)
     if !flash.blank?
       alert_type = ""
       color = ""

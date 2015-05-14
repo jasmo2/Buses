@@ -3,11 +3,10 @@
 # Table name: buses
 #
 #  id            :integer          not null, primary key
-#  create        :string
-#  update        :string
 #  plate_license :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  user_id       :integer
 #
 
 require 'rails_helper'
