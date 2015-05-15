@@ -19,12 +19,66 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def new
+		@user = User.new
+	end
+
+	def create
+		@user = User.new(user_params)
+		if @user.save
+			flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
+			redirect_to action: "list_users"
+		else
+			render "new"
+		end
+	end
+
+	def edit
+		@user = User.new
+	end
+
+=begin
+def update
+		byebug
+		 @user = User.find(user_params)
+		 if @user.save
+		 	flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
+		 	redirect_to action: "list_users"
+		 else
+		 	render "new"
+		 end
+	end
+=end
+
+
+	def list_users
+		@users = User.all
+	end
+
 	def checkpoint
 		cookies.permanent[:checkpoint] = checkpoint_params[:checkpoint]
 		redirect_to controller: "records", action: "new"
 	end
+	
+	def bus_list
+		@user = User.find(params[:id])
+		@buses = Bus.where('user_id= ? OR user_id IS ?', @user.id, nil)
+	end
+
 	private
+	def user_params
+		params[:user][:role] = role_converter(params[:user][:role])
+		params.require(:user).permit(:username,:role,:email,:password,:password_confirmation)
+	end
 	def checkpoint_params
 		params.permit(:checkpoint)
+	end
+	def role_converter(role)
+		case role
+			when "Admin" then role = "admin"
+			when "Editor" then role = "editor"
+			when "Lector" then role = "reader"
+		end
+		return role
 	end
 end

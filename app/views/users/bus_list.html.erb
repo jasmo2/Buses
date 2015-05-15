@@ -5,7 +5,7 @@
 
         <div class="panel-body">
           <div class="table-responsive">
-            <%= form_tag bus_assignment_users_path, method: :patch do %>
+            <%= form_tag  bus_assignment_users_path, method: :patch do %>
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -21,7 +21,7 @@
                     <%= bus.plate_license %>
                   </td>
                   <td>
-                    <%= hidden_field_tag "buses[]",subscription.finished %>
+                    <%= hidden_field_tag "buses_assignment[]",bus.user_id %>
                     <%= check_box_tag("Si", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
                   </td>
                 </tr>

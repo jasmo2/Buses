@@ -40,8 +40,8 @@
                 </span>
                 <% if user.reader? %>
                   <span class="badge">
-                    <%= link_to bus_list_users(user), remote: true , class: "btn btn-default btn-xs" do %>
-                      <span class="glyphicon glyphicon-pencil" aria-hidden="true">editar</span>
+                    <%= link_to bus_list_users_path(user) , class: "btn btn-default btn-xs" do %>
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"> Agregar buses</span>
                     <% end %>
                   </span>
                 <% end %>
