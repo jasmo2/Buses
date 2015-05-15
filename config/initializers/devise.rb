@@ -245,7 +245,9 @@ config.stretches = Rails.env.test? ? 1 : 10
   config.warden do |manager|
     manager.failure_app = CustomFailure
   end
-
+  Warden::Manager.before_logout do |user,auth,opts|
+    auth.cookies.delete :checkpoint
+  end
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.

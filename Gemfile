@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 #PostgreSQL
 gem 'pg'
-
+# Locale data for Ruby on Rails I18n 
+gem 'rails-i18n', '~> 4.0.0'
 
 # Use SCSS for stylesheets
 # Use Uglifier as compressor for JavaScript assets
@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
 gem 'sass-rails'
+gem 'simple_form'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -30,7 +32,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'table_print'
 # Authentication with devise
 gem 'devise'
-
+# Excel import/export
+gem 'roo', '~> 2.0.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,10 +46,13 @@ gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'annotate'
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end

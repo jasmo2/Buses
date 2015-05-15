@@ -1,0 +1,33 @@
+<!-- 
+#  id                     :integer          not null, primary key
+#  username               :string           default(""), not null
+#  role                   :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#
+ -->
+<%= simple_form_for @user do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.input :username, placeholder: 'usuario', label: "Nombre de usuario" %>
+  <%= f.input :email, placeholder: 'ejemplo@coonatra.org', label: "Correo lectronico" %>
+  <%= f.input :role, default: 1,collection: ["Lector","Editor","Admin"] %>
+
+  <%= f.input :password, placeholder: 'Contraseña',label: "Contraseña" %>
+  <%= f.input :password_confirmation, :label => "confirmación de contraseña", :as => 'password', :input_html => {:name => 'password_confirmation'} %>
+
+  
+
+
+  <input type="submit" value="Enviar" name="commit" class="pull-right btn-lg btn-primary ">
+<% end %>

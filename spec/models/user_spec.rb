@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  username               :string           default(""), not null
+#  role                   :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -16,7 +17,6 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
-#  roles                  :integer
 #
 
 require 'rails_helper'

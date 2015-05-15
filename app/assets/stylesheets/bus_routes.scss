@@ -1,0 +1,87 @@
+// Place all the styles related to the bus_routes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.tables{
+  .row:first-child{
+  margin-top: 2em;
+    .table{
+      margin-bottom: 1em;
+    }
+  }
+  .panel.panel-default {
+    .dataTable_wrapper {
+      overflow-x: auto;
+    }
+  }
+  .btn-file {
+      position: relative;
+      overflow: hidden;
+  }
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 40%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }
+  .import {
+    margin-top: 0.8em;
+    width: 100%;
+    display: block;
+    .col-xs-offset-1.col-xs-8.alert{
+      margin-bottom: 0px;
+      padding: 6px 12px;
+      text-align: center;
+    }
+  }
+}
+$margin-table: 0.2em 0 0;
+#bus-route-table .inner-table thead th {
+    padding: 0 15px;
+}
+#bus-route-table{
+  .inner-table{
+    thead{
+      th {
+        padding: 0 15px;
+      } 
+    }
+    tbody{
+      td{
+        padding: 0 15px;
+      }
+      td:first-child{
+        padding: 0 3em;
+      }
+      td:last-child{
+        padding-left: 2em;
+      }
+    }
+  } 
+  thead{
+    th {
+      text-align: center;
+      .row{
+        margin: $margin-table;
+      }
+    }
+  }
+  tbody{
+    td{
+      .row{
+         margin: $margin-table;
+         [class*='col-xs-']{
+          text-align: center;
+         }
+      }
+    }
+  } 
+} 

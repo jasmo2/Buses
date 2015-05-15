@@ -8,7 +8,8 @@ class CustomFailure < Devise::FailureApp
       http_auth
     else
       # store_location!
-      flash[:alert] = i18n_message unless flash[:notice]
+
+      flash[:alert] = I18n.t("devise.failure.invalid")
       redirect_to root_path
     end
   end

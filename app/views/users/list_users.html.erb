@@ -1,0 +1,58 @@
+<div id="page-wrapper" style="min-height: 650px;">
+  <div class="container-fluid autobuses">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"> <%= link_to "Usuarios", usuarios_path %>
+          <% if current_user.admin? %>
+          <%= link_to new_user_path, class: "btn-lg btn-default" do %>
+          <i class="fa fa-user-plus fa-fw"></i> Crear
+          <% end  %>
+          <% end  %>
+        </h1>
+        <%= flash_import(flash) %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row search">
+      <div class="col-lg-12">
+
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div id="content" class="col-lg-12">
+        <% if !@users.empty? %>
+          <% @users.each do |user| %>
+            <ul class="list-group">
+              <li class="list-group-item" id="user_id_<%= user.id %>">
+                Usuario: <strong><%= user.username %></strong>
+                <span class="badge">
+                  <%= link_to user_path(user), method: :delete, data: { confirm: 'Esta seguro de eliminar?' }, class: "btn btn-default btn-xs" do %>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true">eliminar</span>
+                  <% end %>
+                </span>
+                <span class="badge">
+                  <%= link_to edit_user_path(user), remote: true , class: "btn btn-default btn-xs" do %>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">editar</span>
+                  <% end %>
+                </span>
+                <% if user.reader? %>
+                  <span class="badge">
+                    <%= link_to bus_list_users_path(user) , class: "btn btn-default btn-xs" do %>
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"> Agregar buses</span>
+                    <% end %>
+                  </span>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>

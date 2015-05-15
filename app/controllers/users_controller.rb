@@ -1,28 +1,84 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, :except => [:index]
+	before_action :authenticate_user!, except: [:index]
 	def index
 		unless user_signed_in?
 			render "index"
 		else
-			case current_user.roles
+			case current_user.role
 			when "admin"
+				render "dashboard"
 			when "editor"
-				if cookies[:checkpoint] == nil
+				if cookies[:checkpoint]
 					redirect_to controller: "records", action: "new"
 				else
 					render :checkpoint
 				end
 			when "reader"
+					redirect_to controller: "bus_routes", action: "index"
 			end
-			
 		end
 	end
+
+	def new
+		@user = User.new
+	end
+
+	def create
+		@user = User.new(user_params)
+		if @user.save
+			flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
+			redirect_to action: "list_users"
+		else
+			render "new"
+		end
+	end
+
+	def edit
+		@user = User.new
+	end
+
+=begin
+def update
+		byebug
+		 @user = User.find(user_params)
+		 if @user.save
+		 	flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
+		 	redirect_to action: "list_users"
+		 else
+		 	render "new"
+		 end
+	end
+=end
+
+
+	def list_users
+		@users = User.all
+	end
+
 	def checkpoint
-		cookies[:checkpoint] = checkpoint_params[:checkpoint]  
+		cookies.permanent[:checkpoint] = checkpoint_params[:checkpoint]
 		redirect_to controller: "records", action: "new"
 	end
+	
+	def bus_list
+		@user = User.find(params[:id])
+		@buses = Bus.where('user_id= ? OR user_id IS ?', @user.id, nil)
+	end
+
 	private
+	def user_params
+		params[:user][:role] = role_converter(params[:user][:role])
+		params.require(:user).permit(:username,:role,:email,:password,:password_confirmation)
+	end
 	def checkpoint_params
 		params.permit(:checkpoint)
+	end
+	def role_converter(role)
+		case role
+			when "Admin" then role = "admin"
+			when "Editor" then role = "editor"
+			when "Lector" then role = "reader"
+		end
+		return role
 	end
 end

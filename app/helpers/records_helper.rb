@@ -6,9 +6,9 @@ module RecordsHelper
       if flash[:notice]
         alert_type = flash[:notice]
         color = "success"
-      end 
-      if flash[:alert]
-        alert_type = flash[:alert]
+      elsif flash[:alert]
+        alert_type = flash[:alert].join(".\t")
+          .gsub(/Quantity/,'Numeración')
         color = "danger"
       end
       return "<div class=\"alert alert-#{color} col-xs-7\" 

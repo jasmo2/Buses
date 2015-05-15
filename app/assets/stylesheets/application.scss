@@ -11,11 +11,26 @@
  * file per style scope.
  *
  *= require font-awesome
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-modal-bs3patch";
+@import "bootstrap-modal";
 @import "sb-admin-2";
 @import "metisMenu";
 @import "horizontal-form";
 @import "checkpoint-form";
 @import "records";
+@import "bus_routes";
+@import "buses";
+
+.login-panel {
+  margin-top: 0%;
+}
+#bus-form .disabled {
+  color: #777;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+}
