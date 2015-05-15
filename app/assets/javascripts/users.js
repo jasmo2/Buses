@@ -4,12 +4,14 @@ doc = $(document);
 
 doc.on('ready page:load', function() {
   doc.on('click', '.subscription', function() {
-    var $el;
-    $el = $(this).siblings();
-    if ($el.val() === 'true') {
-      $el.val('false');
+    var $hidden_sibling;
+    var $checkbox_sibling =  $(this);
+    $hidden_sibling = $checkbox_sibling.siblings();
+
+    if ($hidden_sibling.val() === "nil") {
+      $hidden_sibling.val($checkbox_sibling.attr("id"))
     } else {
-      $el.val('true');
+      $hidden_sibling.val("nil");
     }
   });
 });

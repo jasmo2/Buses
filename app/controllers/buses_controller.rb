@@ -15,6 +15,11 @@ class BusesController < ApplicationController
     render "new.js.erb"
   end
 
+  def bus_assignment
+    Bus.update_multiple(params[:user_id],params[:buses_assignment],params[:buses])
+    redirect_to :back
+  end
+
   def update
     redirect_to action: "list_buses"
   end

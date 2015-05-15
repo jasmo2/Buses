@@ -17,12 +17,22 @@ class Bus < ActiveRecord::Base
   validates :id, presence: true
   validates :plate_license, presence: true
   validates :id, numericality: { only_integer: true }
+  def self.update_multiple(id,buses_assignment,buses)
+    buses.each_with_index do |bus_id,index|
+      bus = find(bus_id) if bus_id != "nil"
+      idd = if buses_assignment[index] == "nil" then nil else id end      
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "bus tp #{bus}"
+      puts "idd #{idd}"
+      bus.update(user_id: idd)
+    end
+  end
+
   def self.add_routes(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     header[1] = "plate_license"
     (2..spreadsheet.last_row).each do |i|
-      byebug
       row = spreadsheet.row(i)
       bus = where(plate_license: row[1])
       raise ArgumentError, "Autobuses y placas no concuerdan" if bus.empty?

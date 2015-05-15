@@ -16,17 +16,18 @@
               <tbody>
               <% if !@buses.blank? %>
                 <% @buses.each do |bus|  %>
+                  <%= hidden_field_tag "buses[]", bus.id %>
                 <tr>
-                  <td>
+                  <td>  
                     <%= bus.plate_license %>
                   </td>
                   <td>
-                    <%= hidden_field_tag "buses_assignment[]",bus.user_id %>
-                    <%= check_box_tag("Si", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
+                    <%= hidden_field_tag "buses_assignment[]", bus.user_id ? bus.id : "nil" %>
+                    <%= check_box_tag("#{bus.id}", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
                   </td>
                 </tr>
                 <% end %>
-                <% end %>
+              <% end %>
               </tbody>
             </table>
             <%= hidden_field_tag 'user_id', @user.id %>
