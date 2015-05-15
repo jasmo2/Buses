@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   enum role: [:admin , :editor , :reader]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  validates :username, presence: true
+  validates :role, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
