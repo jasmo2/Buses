@@ -16,7 +16,7 @@ class Record < ActiveRecord::Base
   validates :quantity, presence: true
   validates :user_id, presence: true
   validates :bus_id, presence: true
-  validate :bus_transit_this_day
+  #validate :bus_transit_this_day
   attr_accessor :bus_id
   enum register_type: [:terminal, :control]
   before_validation :get_trip, :register_type_N_time
@@ -30,6 +30,8 @@ class Record < ActiveRecord::Base
     self.trip_id = if trip != nil then trip.id else nil end
   end
   def register_type_N_time
-   self.time = Time.now.in_time_zone(-5)
+    if self.time != nil
+      self.time = Time.now.in_time_zone(-5)
+    end
   end
 end
