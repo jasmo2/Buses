@@ -24,7 +24,7 @@
 @import "records";
 @import "bus_routes";
 @import "buses";
-
+  
 .login-panel {
   margin-top: 0%;
 }
@@ -33,4 +33,12 @@
   text-decoration: none;
   cursor: not-allowed;
   background-color: transparent;
+}
+.page-header{
+  a{
+      color: black;
+    }
+  a:hover{
+    color: black;
+  }
 }
