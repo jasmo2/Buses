@@ -10,6 +10,7 @@
 
 class BusRoute < ActiveRecord::Base
   has_many :trips
+  has_many :bus_routes, through: :trips
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
