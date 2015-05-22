@@ -15,4 +15,36 @@ module BusesHelper
             </div>".html_safe
     end
   end
+
+  def days_in_the_month
+    actual_month = l Time.now, format: :short
+    html = ""
+    (Time.days_in_month(Time.now.to_date.month)).times do |day|  
+      day += 1
+      html += %Q[
+        <th>#{actual_month.capitalize}-#{day}</th>
+      ]
+    end
+    html.html_safe
+  end
+  def assigned_routes_to(bus)
+    days_in_the_month = Time.days_in_month(Time.now.to_date.month)
+    d = Date.today
+    html = ""
+    days_in_the_month.times do |day|
+      day += 1
+      schedualed_trip = bus.trips.where(operation_date: Date.new(d.year,d.month,day)).take
+      if schedualed_trip
+        html += %Q[
+          <td> #{schedualed_trip.bus_route.name} </td>
+        ]
+      else
+        html += %Q[
+          <td> - </td>
+        ]
+      end
+    end
+      
+    html.html_safe
+  end
 end

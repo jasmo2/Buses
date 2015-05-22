@@ -17,6 +17,11 @@ class Bus < ActiveRecord::Base
   validates :id, presence: true
   validates :plate_license, presence: true
   validates :id, numericality: { only_integer: true }
+  
+  def self.monthly_programming
+    
+  end
+
   def self.update_multiple(id,buses_assignment,buses)
     buses.each_with_index do |bus_id,index|
       bus = find(bus_id) if bus_id != "nil"

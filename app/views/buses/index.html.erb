@@ -46,74 +46,19 @@
                   <tr>
                     <th>ID</th>
                     <th>Placa</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
-                    <th>day - n</th>
+                    <%= days_in_the_month %> 
                </tr>
              </thead>
 
              <tbody>
-                 <tr>
-                   <td>23</td>
-                   <td>TRD 23</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-                   <td>day - n</td>
-              </tr>
+                <% @buses.map do |bus| %>
+                  <tr>
+                    <td><%= bus.id %></td>
+                    <td><%= bus.plate_license %></td>
+                    <%= assigned_routes_to(bus) %>
+                </tr>
+              <% end %>          
+
              </tbody>
            </table>
          </div>
