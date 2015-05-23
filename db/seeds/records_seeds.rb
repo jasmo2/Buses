@@ -3,10 +3,10 @@
 # Table name: records
 #
 #  id            :integer          not null, primary key
-#  -time          :time
-#  -quantity      :integer
-#  -register_type :integer
-#  -user_id       :integer          not null
+#  time          :time
+#  quantity      :integer
+#  register_type :integer
+#  user_id       :integer          not null
 #  trip_id       :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -31,7 +31,7 @@ trips.each do |trip|
     register_type: :terminal,
     quantity: quantity1,
     user_id: user1_3.id,
-    time: record_time,
+    register_time: record_time,
     bus_id: busID
     )
   # Control
@@ -39,7 +39,7 @@ trips.each do |trip|
     register_type: :control,
     quantity: quantity2,
     user_id: user2.id,
-    time: record_time + 3600.seconds,
+    register_time: record_time + 3600.seconds,
     bus_id: busID
     )
   # End
@@ -47,7 +47,7 @@ trips.each do |trip|
     register_type: :terminal,
     quantity: quantity3,
     user_id: user1_3.id,
-    time: record_time + 7200.seconds,
+    register_time: record_time + 7200.seconds,
     bus_id: busID
     )
 end
