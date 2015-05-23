@@ -1,6 +1,6 @@
 class BusesController < ApplicationController
   before_action :role_editor
-  before_action :role_verification, only: [:index, :list_buses]
+  before_action :buses_role_verification, only: [:index, :list_buses]
   before_action :new_bus, only: [:new]
   before_action :modify_bus, only: [:edit,:destroy]
   before_action :not_admin, only: [:import]
@@ -58,13 +58,7 @@ class BusesController < ApplicationController
   end  
 
   private
-  def role_verification
-    if current_user.admin?
-      @buses = Bus.all
-    else
-      @buses = Bus.where(user_id: current_user.id)
-    end
-  end
+
   def new_bus
     @bus = Bus.new
   end

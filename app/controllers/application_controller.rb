@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
     redirect_to action: "index"
   end
  end
+ def buses_role_verification
+    if current_user.admin?
+      @buses = Bus.all
+    else
+      @buses = Bus.where(user_id: current_user.id)
+    end
+  end
 end
