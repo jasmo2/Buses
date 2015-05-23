@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.0.0'
 gem 'rails', '4.2.0'
 #PostgreSQL
 gem 'pg'
@@ -45,6 +46,7 @@ gem 'rails_12factor', group: :production
 # gem 'capistrano-rails', group: :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'puma'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem "capybara"
