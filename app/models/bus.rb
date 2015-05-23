@@ -14,13 +14,11 @@ class Bus < ActiveRecord::Base
   belongs_to :user
   has_many :trips
   has_many :bus_routes, through: :trips
+  has_many :records, through: :trips
   validates :id, presence: true
   validates :plate_license, presence: true
   validates :id, numericality: { only_integer: true }
   
-  def self.monthly_programming
-    
-  end
 
   def self.update_multiple(id,buses_assignment,buses)
     buses.each_with_index do |bus_id,index|
