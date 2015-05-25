@@ -11,4 +11,7 @@ var recordTable = function () {
       }
     );
 };
-$(document).on('ready page:load', recordTable() );
+$(document).on('ready page:load', function () {
+  // recordTable();
+  $('#date-route-bus').pickadate()
+});
