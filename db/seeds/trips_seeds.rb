@@ -18,18 +18,20 @@ Trip.destroy_all
 directions = Trip.directions.keys
 buses = Bus.all
 bus_routes = BusRoute.all
-buses.each do |bus|  
-  bus_routes.each do |bus_route|
-    rand(5).times do |index|
-      Trip.create(direction: directions[rand(2)], 
-        trip_column: index, 
-        neighbourhood: Faker::Address.city,
-        bus_id: bus.id,
-        bus_route_id: bus_route.id,
-        start_time: rand(18060.. 86340).seconds,
-        operation_date: (Faker::Time.forward(3).to_date).to_date
-        )
-    end
+bus_routes.each do |bus_route|
+  trips_quantity = rand(5)
+  trips_quantity.times do |index|
+    Trip.create(
+      direction: directions[rand(2)], 
+      trip_column: index, 
+      neighbourhood: Faker::Address.city,
+      bus_route_id: bus_route.id,
+      start_time: rand(18060.. 86340).seconds,
+      operation_date: (Faker::Time.forward(3).to_date).to_date
+      )
   end
+end
+buses.each do |bus|  
+
 end
 
