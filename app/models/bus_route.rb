@@ -57,7 +57,7 @@ class BusRoute < ActiveRecord::Base
           when ""
             trip_data[0] = ""
           else
-            raise ArgumentError, "'#{value}' no es una dirección valida."
+            raise ArgumentError, "'#{trip_data[0]}' no es una dirección valida."
         end
       end
     end
