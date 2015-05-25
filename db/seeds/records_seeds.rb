@@ -16,39 +16,43 @@ Record.destroy_all
 register_types = Record.register_types.keys
 editor_users = User.where(role: 1)
 trips = Trip.all
+quantity1 = rand(100...200)
+
 trips.each do |trip|
-  busID = trip.bus.id
-  quantity1 = rand(100...200) 
-  quantity2 = rand(quantity1...400) 
-  quantity3 = rand(quantity2...600) 
+  tripID = trip.id
+  quantity1 += rand(100...200) 
   user1_3 = editor_users[rand(editor_users.count)]
   begin
     user2 = editor_users[rand(editor_users.count)]
   end until user1_3 != user2
   record_time = Faker::Time.forward(3).in_time_zone(-5)
-  # Initial
-  Record.create(
+  # Initial - End ,Excepcet for the first one
+  Record.new(
     register_type: :terminal,
     quantity: quantity1,
     user_id: user1_3.id,
     register_time: record_time,
-    bus_id: busID
-    )
+    trip_id: tripID
+    ).save(validate:false)
   # Control
-  Record.create(
+  quantity1 += rand(100...200) 
+  Record.new(
     register_type: :control,
-    quantity: quantity2,
+    quantity: quantity1,
     user_id: user2.id,
     register_time: record_time + 3600.seconds,
-    bus_id: busID
-    )
+    trip_id: tripID
+    ).save(validate:false)
   # End
-  Record.create(
+=begin
+
+  Record.new(
     register_type: :terminal,
     quantity: quantity3,
     user_id: user1_3.id,
     register_time: record_time + 7200.seconds,
-    bus_id: busID
-    )
+    trip_id: tripID
+    ).save(validate:false)
+=end
 end
 
