@@ -29,7 +29,7 @@ class Trip < ActiveRecord::Base
       search_fields.each do |field|  
         search_field[field] = trip_data[field] 
       end
-      trips <<  where(search_field)[0]
+      trips << where(search_field)[0]
     end
     return trips
   end

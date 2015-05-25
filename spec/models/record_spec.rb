@@ -3,7 +3,7 @@
 # Table name: records
 #
 #  id            :integer          not null, primary key
-#  time          :time
+#  register_time :time
 #  quantity      :integer
 #  register_type :integer
 #  user_id       :integer          not null

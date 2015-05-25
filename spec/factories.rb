@@ -4,7 +4,10 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email  
-FactoryGirl.define do
+FactoryGirl.define do  factory :operation_date do
+    operation_date "2015-05-25"
+  end
+
   factory :user do
     username    "John"
     email     "jasmo2@coonatra.org"
