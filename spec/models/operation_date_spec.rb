@@ -8,6 +8,8 @@
 #  bus_route_id   :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  terminal       :boolean          default(TRUE)
+#  trip_column    :integer          default(0)
 #
 
 require 'rails_helper'

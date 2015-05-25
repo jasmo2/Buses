@@ -2,16 +2,14 @@
 #
 # Table name: trips
 #
-#  id             :integer          not null, primary key
-#  direction      :integer
-#  operation_date :date
-#  bus_id         :integer
-#  bus_route_id   :integer
-#  neighbourhood  :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  start_time     :time
-#  trip_column    :integer
+#  id            :integer          not null, primary key
+#  direction     :integer
+#  bus_route_id  :integer
+#  neighbourhood :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  start_time    :time
+#  trip_column   :integer
 #
 
 require 'rails_helper'
