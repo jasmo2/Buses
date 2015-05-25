@@ -1,0 +1,23 @@
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Placa</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <% if @buses.empty? %>
+      <td> Nº </td>
+      <td> No existes buses en la base de Datos </td>
+    <% else %>
+      <% @buses.map do |bus| %>
+        <td><%= bus.id %></td>
+        <td>
+          <%= link_to "",  data_list_path, remote: true %>
+            <%= bus.license_plate %><i class="fa fa-chevron-right fa-2x"></i>
+          <% end %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+</tbody>
