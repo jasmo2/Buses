@@ -12,9 +12,8 @@
 class Bus < ActiveRecord::Base
   attr_accessor :driver_name
   belongs_to :user
-  has_many :trips
-  has_many :bus_routes, through: :trips
-  has_many :records, through: :trips
+  has_many :operation_dates
+  has_many :bus_routes, through: :operation_dates
   validates :id, presence: true
   validates :plate_license, presence: true
   validates :id, numericality: { only_integer: true }
@@ -24,9 +23,6 @@ class Bus < ActiveRecord::Base
     buses.each_with_index do |bus_id,index|
       bus = find(bus_id) if bus_id != "nil"
       idd = if buses_assignment[index] == "nil" then nil else id end      
-      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-      puts "bus tp #{bus}"
-      puts "idd #{idd}"
       bus.update(user_id: idd)
     end
   end
@@ -37,15 +33,26 @@ class Bus < ActiveRecord::Base
     header[1] = "plate_license"
     (2..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      bus = where(plate_license: row[1])
-      raise ArgumentError, "Autobuses y placas no concuerdan" if bus.empty?
+      bus = where(plate_license: row[1]).take
+      raise ArgumentError, "Autobuses y placas no concuerdan" if bus.nil?
       for index in (2...row.count)
-        bus_route = BusRoute.where(name: row[index])[0]
-        byebug
-        trips_data = bus_route.trips
-        multiple_trips = Trip.where_multiple(trips_data,"bus_id")
-        unless Trip.update_multiple(trips_data,multiple_trips)
-          raise ArgumentError, "No se ha podido actulizar los datos"
+        if row[index] == nil
+          byebug
+        end
+        if !row[index].nil? && !row[index].empty?
+          bus_route = BusRoute.where(name: row[index]).take
+          raise ArgumentError, "La ruta '#{row[index]}' no ah sido creada" if bus_route.nil?
+          working_day = OperationDate.where(bus_route_id: bus_route.id, operation_date: header[index]).take unless bus_route.nil?
+          if working_day.nil?
+            unless OperationDate.create(bus_route_id: bus_route.id, operation_date: header[index], bus_id: bus.id )
+              raise ArgumentError, "Error en la transacción"
+            end
+          else
+            working_day.bus_id = bus.id
+            unless working_day.save
+              raise ArgumentError, "Error en la transacción"
+            end
+          end
         end
       end
     end
