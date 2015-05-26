@@ -13,6 +13,6 @@
 #
 
 class OperationDate < ActiveRecord::Base
-  has_many :buses
-  has_many :bus_routes
+  belongs_to :bus
+  belongs_to :bus_route
 end
