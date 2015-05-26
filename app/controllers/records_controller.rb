@@ -1,6 +1,16 @@
 class RecordsController < ApplicationController
-  before_action :role_reader
-  before_action :validates_cookies
+  before_action :role_reader, except: [:data_list]
+  before_action :validates_cookies, except: [:data_list,:search]
+  before_action :buses_role_verification, only: [:search]
+
+  def search
+  end
+
+  def data_list
+    @bus = Bus.new
+    # @records = Record.filter_by_bus(params[:id])
+  end
+
   def new
   end
   def create
