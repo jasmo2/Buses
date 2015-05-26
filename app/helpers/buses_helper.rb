@@ -33,10 +33,10 @@ module BusesHelper
     html = ""
     days_in_the_month.times do |day|
       day += 1
-      schedualed_trip = bus.trips.where(operation_date: Date.new(d.year,d.month,day)).take
-      if schedualed_trip
+      schedualed_route = bus.operation_dates.where(operation_date: Date.new(d.year,d.month,day)).take
+      if schedualed_route
         html += %Q[
-          <td> #{schedualed_trip.bus_route.name} </td>
+          <td> #{schedualed_route.bus_route.name} </td>
         ]
       else
         html += %Q[
