@@ -10,9 +10,9 @@ module BusesHelper
         alert_type = flash[:alert]
         color = "warning"
       end
-      return "<div class=\" alert alert-#{color}\" role=\"alert\">
+      return "<div class=\"col-xs-offset-1 col-xs-8 alert alert-#{color}\" role=\"alert\">
               #{alert_type}
-            </div>".html_safe
+            </div>".html_safe 
     end
   end
 
