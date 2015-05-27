@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514152608) do
+ActiveRecord::Schema.define(version: 20150526213141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,27 +29,36 @@ ActiveRecord::Schema.define(version: 20150514152608) do
     t.integer  "user_id"
   end
 
-  create_table "records", force: :cascade do |t|
-    t.time     "time"
-    t.integer  "quantity"
-    t.integer  "register_type"
-    t.integer  "user_id",       null: false
-    t.integer  "trip_id",       null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "records", ["trip_id"], name: "index_records_on_trip_id", unique: true, using: :btree
-  add_index "records", ["user_id"], name: "index_records_on_user_id", unique: true, using: :btree
-
-  create_table "trips", force: :cascade do |t|
-    t.integer  "direction"
+  create_table "operation_dates", force: :cascade do |t|
     t.date     "operation_date"
     t.integer  "bus_id"
     t.integer  "bus_route_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "terminal",       default: true
+    t.integer  "trip_column",    default: 0
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.time     "register_time"
+    t.integer  "quantity"
+    t.integer  "register_type"
+    t.integer  "user_id",       null: false
+    t.integer  "bus_id",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.date     "register_date"
+  end
+
+  add_index "records", ["bus_id"], name: "index_records_on_bus_id", using: :btree
+  add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
+
+  create_table "trips", force: :cascade do |t|
+    t.integer  "direction"
+    t.integer  "bus_route_id"
     t.string   "neighbourhood"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.time     "start_time"
     t.integer  "trip_column"
   end

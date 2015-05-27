@@ -1,0 +1,56 @@
+<div id="page-wrapper" style="min-height: 650px;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"> <%= link_to "Lista de datos", data_list_path %>
+        </h1>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <div id='search-block' class="row">
+      <%= form_tag get_records_path, method: :get, remote: true do %>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+              <p>Bus</p>
+            </div>
+            <div class="col-sm-6">
+              <div class="select-style">
+                <%= select_tag "bus_id", options_from_collection_for_select(@buses, "id", "plate_license") %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-3">
+              <p>Fecha</p>
+            </div>
+            <div class="col-sm-9">
+              <%=  date_field_tag 'date-route-bus' %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <%= submit_tag "Ingresar", class: "btn btn-primary full-length" %>
+        </div>
+      <!-- /.col-lg-12 -->
+      <% end %>
+    </div>
+    <!-- form_tag -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="records-display">
+          <div class="panel-body">
+            <div id="recordsTable_wrapper" class="dataTable_wrapper">
+             
+            </div>
+          </div>
+        <!-- /.records_display -->
+        </div>
+      <!-- /.col-lg-12 -->
+      </div>
+    </div>
+  </div>
+</div>

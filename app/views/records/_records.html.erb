@@ -1,0 +1,21 @@
+ <table class="table table-striped table-bordered table-hover" id="records-table">
+  <thead>
+    <tr>
+      <th>Viajes</th>
+      <th>Cantidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% if @records.empty? %>
+        <td> No hay registros </td>
+        <td> No hay registros </td>
+      <% else %>
+        <% @records.each_with_index do |record,index|%>
+          <td> Viaje:<%= index %> </td>
+          <td> <%= record.quantity %> </td>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

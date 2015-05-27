@@ -2,22 +2,18 @@
 #
 # Table name: trips
 #
-#  id             :integer          not null, primary key
-#  direction      :integer
-#  operation_date :date
-#  bus_id         :integer
-#  bus_route_id   :integer
-#  neighbourhood  :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  start_time     :time
-#  trip_column    :integer
+#  id            :integer          not null, primary key
+#  direction     :integer
+#  bus_route_id  :integer
+#  neighbourhood :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  start_time    :time
+#  trip_column   :integer
 #
 
 class Trip < ActiveRecord::Base
-  belongs_to :bus
   belongs_to :bus_route
-  has_many :records
   enum direction: [:left,:right]
   validates :start_time, numericality: true
   after_validation :change_to_date
@@ -29,7 +25,7 @@ class Trip < ActiveRecord::Base
       search_fields.each do |field|  
         search_field[field] = trip_data[field] 
       end
-      trips <<  where(search_field)[0]
+      trips << where(search_field)[0]
     end
     return trips
   end

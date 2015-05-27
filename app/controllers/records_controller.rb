@@ -1,6 +1,15 @@
 class RecordsController < ApplicationController
-  before_action :role_reader
-  before_action :validates_cookies
+  before_action :role_reader, except: [:data_list]
+  before_action :validates_cookies, except: [:data_list,:search]
+  before_action :buses_role_verification, only: [:search]
+  def search
+  end
+
+  def data_list
+    @records = Record.where(bus_id: params["bus_id"], register_date: params["date-route-bus"])
+    render "data_list.js.erb"
+  end
+
   def new
   end
   def create

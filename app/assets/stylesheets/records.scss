@@ -21,3 +21,75 @@
     height: 100%;
   }
 }
+#records-table{
+
+  .bus-plate {
+      display: inline-block;
+      width: 4.2em;
+      margin-right: 0.2em;
+  }
+}
+#search-block{
+  border: 2px black ridge; 
+  padding-bottom: 0.2em;
+  
+  .btn-primary.full-length {
+    margin: 2em 0 0;
+    width: 333px;
+    float: right;
+  }
+  #date-route-bus{
+    border: 2px solid #337AB7;
+    margin: 3px 0 0;
+    width: 100%;
+  }
+  @media (min-width: 767px){
+    border: none
+  }
+  @media (min-width: 768px) {
+    border-bottom: 2px black ridge;
+    .btn-primary.full-length {
+      margin: 0 ;
+      width: 100%;
+      float: none;
+    }
+    #date-route-bus{
+      margin-left: 25px;
+    } 
+  }
+  p{
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+  }
+  .select-style {
+    padding: 0;
+    margin: 3px 0 0 0px;
+    border: 2px solid #337AB7;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    height: 28px;
+    background: #fff ;
+    select {
+      font-size: 14px;
+      padding: 2px 8px;
+      width: 130%;
+      border: none;
+      box-shadow: none;
+      background-color: rgba(226, 30, 30, 0);
+      background-image: none;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+    }
+
+    select:focus {
+      outline: none;
+    }
+  }
+}
+

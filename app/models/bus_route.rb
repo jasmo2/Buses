@@ -10,6 +10,8 @@
 
 class BusRoute < ActiveRecord::Base
   has_many :trips
+  has_many :operation_dates
+  has_many :buses, through: :operation_dates
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -56,7 +58,7 @@ class BusRoute < ActiveRecord::Base
           when ""
             trip_data[0] = ""
           else
-            raise ArgumentError, "'#{value}' no es una dirección valida."
+            raise ArgumentError, "'#{trip_data[0]}' no es una dirección valida."
         end
       end
     end

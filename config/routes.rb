@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   
   authenticate :user do
     resources :records, except: [:index]
+    get 'datos-de-registro' => 'records#search' ,as: :data_list
+    get 'traer-records' => 'records#data_list', as: :get_records
     resources :bus_routes do
       collection { post :import }
     end
