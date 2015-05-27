@@ -37,7 +37,7 @@ trips.each do |trip|
     quantity: quantity1,
     user_id: user1_3.id,
     register_time: record_time,
-    bus_id: busID[rand(busIS.length-1)]
+    bus_id: busID[rand(busID.length-1)]
     ).save(validate:false)
   # Control
   quantity1 += rand(100...200) 
@@ -46,7 +46,7 @@ trips.each do |trip|
     quantity: quantity1,
     user_id: user2.id,
     register_time: record_time + 3600.seconds,
-    bus_id: busID[rand(busIS.length-1)]
+    bus_id: busID[rand(busID.length-1)]
     ).save(validate:false)
   # End
 =begin
