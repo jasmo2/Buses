@@ -36,9 +36,6 @@ class Bus < ActiveRecord::Base
       bus = where(plate_license: row[1]).take
       raise ArgumentError, "Autobuses y placas no concuerdan" if bus.nil?
       for index in (2...row.count)
-        if row[index] == nil
-          byebug
-        end
         if !row[index].nil? && !row[index].empty?
           bus_route = BusRoute.where(name: row[index]).take
           raise ArgumentError, "La ruta '#{row[index]}' no ah sido creada" if bus_route.nil?
