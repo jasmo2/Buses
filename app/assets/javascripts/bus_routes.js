@@ -8,7 +8,8 @@ $(document).on('ready page:load', function () {
         bLengthChange: false,
         bFilter: false, 
         bInfo: false,
-        "scrollX": true
+        "scrollX": true,
+        "iDisplayLength": 60
       }
     );
     validationFile();
