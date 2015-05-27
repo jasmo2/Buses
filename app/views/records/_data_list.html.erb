@@ -6,8 +6,8 @@
       <table class="inner-table">
         <thead>
           <tr>
-            <th>Hora</th>
-            <th>Pasajeros</th>
+            <th>Viajes</th>
+            <th>Cantidad</th>
           </tr>
         </thead>
       </table>
@@ -16,16 +16,14 @@
 </thead>
 <tbody>
   <tr>
-    <td>Ruta</td>
-    <td>
-      Fecha: XX-XX-XX
-      <table class="inner-table">
-        <tbody>
-          <tr>
-            <td>Hora</td>
-            <td>Pasajeros</td>
-          </tr>
-        <tbody>
-    </td>
+    <% if @records.empty? %>
+      <td> No hay registros </td>
+      <td> No hay registros </td>
+    <% else %>
+      <% @records.each_with_index do |record,index|%>
+        <td> Viaje:<%= index %> </td>
+        <td> <%= record.quantity %> </td>
+      <% end %>
+    <% end %>
   </tr>
 </tbody>
