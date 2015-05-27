@@ -8,7 +8,7 @@
       <!-- /.col-lg-12 -->
     </div>
     <div id='search-block' class="row">
-      <%= form_tag get_records_path, method: :get do %>
+      <%= form_tag get_records_path, method: :get, remote: true do %>
         <div class="col-sm-4">
           <div class="row">
             <div class="col-sm-3"></div>
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <button type="submit" class="btn btn-primary full-length">Ingresar</button>
+          <%= submit_tag "Ingresar", class: "btn btn-primary full-length" %>
         </div>
       <!-- /.col-lg-12 -->
       <% end %>
@@ -43,9 +43,8 @@
       <div class="col-lg-12">
         <div class="records-display">
           <div class="panel-body">
-            <div class="dataTable_wrapper">
-              <table class="table table-striped table-bordered table-hover" id="records-table">
-              </table>
+            <div id="recordsTable_wrapper" class="dataTable_wrapper">
+             
             </div>
           </div>
         <!-- /.records_display -->

@@ -7,7 +7,9 @@ var recordTable = function () {
       {
         bLengthChange: false, 
         bFilter: false, 
-        bInfo: false
+        bInfo: false,
+        "scrollX": true,
+        "iDisplayLength": 60
       }
     );
 };
