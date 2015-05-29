@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   # resources :users
-
   
-  devise_for :users #, controllers: {registrations: 'users/registrations'}
+  devise_for :users 
   root 'users#index'
   
   authenticate :user do
@@ -22,7 +21,7 @@ Rails.application.routes.draw do
   post '/checkpoint' => 'users#checkpoint' ,as: :user_checkpoint
   get '/usuarios' => 'users#list_users'
   scope "/coonatra" do
-    resources :users, except: [:index,:show,:update]
+    resources :users, except: [:index,:show]
     resources :users, only: [] do
       collection do
         get ':id/autobuses' => 'users#bus_list' ,as: :bus_list
