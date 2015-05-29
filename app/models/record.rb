@@ -19,7 +19,7 @@ class Record < ActiveRecord::Base
   validates :user_id, presence: true
   validates :bus_id, presence: true
   enum register_type: [:terminal, :control]
-  before_validation :get_checkpoint, :register_type_N_time, :register_type_N_date
+  before_validation :register_type_N_time, :register_type_N_date
 
   def self.filter_by_bus(bus_id,date)
     records  = where(bus_id: bus_id, register_date: date)
