@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:index]
+  before_action :modify_user, only: [:edit,:destroy,:update]
+
 	def index
 		unless user_signed_in?
 			render "index"
@@ -34,22 +36,21 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.new
 	end
 
-=begin
-def update
-		byebug
-		 @user = User.find(user_params)
-		 if @user.save
-		 	flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
-		 	redirect_to action: "list_users"
-		 else
-		 	render "new"
-		 end
+	def update
+		@user.attributes = user_params
+		if @user.save
+			flash[:notice] = "Se ah actualizado el usuario #{@user.username}"
+			redirect_to action: "list_users"
+		else
+			render "new"
+		end
 	end
-=end
 
+	def destroy
+	  @user.destroy
+	end
 
 	def list_users
 		@users = User.all
@@ -65,14 +66,23 @@ def update
 		@buses = Bus.where('user_id= ? OR user_id IS ?', @user.id, nil)
 	end
 
+
+# ----------
 	private
+
+	def modify_user
+	  @user = User.find(params[:id])
+	end
+
 	def user_params
 		params[:user][:role] = role_converter(params[:user][:role])
 		params.require(:user).permit(:username,:role,:email,:password,:password_confirmation)
 	end
+
 	def checkpoint_params
 		params.permit(:checkpoint)
 	end
+
 	def role_converter(role)
 		case role
 			when "Admin" then role = "admin"
