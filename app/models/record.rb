@@ -15,6 +15,7 @@
 
 class Record < ActiveRecord::Base
   belongs_to :bus
+  validates_presence_of :bus, message: " no registrado"
   validates :quantity, presence: true
   validates :user_id, presence: true
   validates :bus_id, presence: true
