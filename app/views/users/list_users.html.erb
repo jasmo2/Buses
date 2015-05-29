@@ -27,7 +27,7 @@
           <ul class="list-group">
             <% @users.each do |user| %>
               <li class="list-group-item" id="user_id_<%= user.id %>">
-                Usuario: <strong><%= user.username %></strong>
+                Usuario: <strong><%= user.username %></strong> <i>(<%= user.role %>)</i>
                 <span class="badge">
                   <%= link_to user_path(user), remote: true, method: :delete, data: { confirm: 'Esta seguro de eliminar?' }, class: "btn btn-default btn-xs" do %>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true">eliminar</span>
