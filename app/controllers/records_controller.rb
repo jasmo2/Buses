@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :role_reader, except: [:data_list]
+  before_action :role_reader, except: [:data_list, :search]
   before_action :validates_cookies, except: [:data_list,:search]
   before_action :buses_role_verification, only: [:search]
   def search

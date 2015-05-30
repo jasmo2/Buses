@@ -55,18 +55,19 @@
           <i class="fa fa-edit fa-fw"></i> Programación
           <% end  %>
         </li>
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to autobuses_path do %>
+            <i class="fa fa-wrench fa-fw"></i> AutoBuses
+            <% end  %>
+          </li>
 
-        <li>
-          <%= link_to autobuses_path do %>
-          <i class="fa fa-wrench fa-fw"></i> AutoBuses
-          <% end  %>
-        </li>
-
-        <li>
-          <%= link_to usuarios_path do %>
-            <i class="fa fa-sitemap fa-fw"></i> Usuarios
-          <% end  %>
-        </li>
+          <li>
+            <%= link_to usuarios_path do %>
+              <i class="fa fa-sitemap fa-fw"></i> Usuarios
+            <% end  %>
+          </li>
+        <% end %>
         <li>
           <%= link_to data_list_path do %>
             <i class="fa fa-file-text fa-fw"></i> Datos
