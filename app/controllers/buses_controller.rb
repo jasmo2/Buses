@@ -1,5 +1,6 @@
 class BusesController < ApplicationController
   before_action :role_editor
+  before_action :role_reader
   before_action :buses_role_verification, only: [:index, :list_buses]
   before_action :new_bus, only: [:new]
   before_action :modify_bus, only: [:edit,:destroy]

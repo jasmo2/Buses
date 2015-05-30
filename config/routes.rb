@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       collection do
         get ':id/autobuses' => 'users#bus_list' ,as: :bus_list
-        patch 'autobuses' => 'buses#bus_assignment' ,as: :bus_assignment
+        post 'autobuses' => 'buses#bus_assignment' ,as: :bus_assignment
       end
     end
 

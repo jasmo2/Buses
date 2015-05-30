@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :role_editor
+  before_action :role_reader
 	before_action :authenticate_user!, except: [:index]
   before_action :modify_user, only: [:edit,:destroy,:update]
 
