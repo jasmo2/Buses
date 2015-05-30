@@ -6,16 +6,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% if @records.empty? %>
+    <% if @records.empty? %>
+      <tr>
         <td> No hay registros </td>
         <td> No hay registros </td>
-      <% else %>
-        <% @records.each_with_index do |record,index|%>
+      </tr>
+    <% else %>
+      <% @records.each_with_index do |record,index|%>
+        <tr>
           <td> Viaje:<%= index %> </td>
           <td> <%= record.quantity %> </td>
-        <% end %>
+        </tr>      
       <% end %>
-    </tr>
+    <% end %>
   </tbody>
 </table>
