@@ -35,7 +35,7 @@ class Record < ActiveRecord::Base
   end
   def register_type_N_date
     if self.register_date == nil
-      self.register_date = Date.today(-5)
+      self.register_date = Time.now.in_time_zone(-5).to_date
     end
   end
 end
