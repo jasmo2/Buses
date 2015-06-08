@@ -41,12 +41,11 @@ gem 'roo', '~> 2.0.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'rails_12factor', group: :production
+gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'puma'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem "capybara"
