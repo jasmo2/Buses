@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :role_editor
-  before_action :role_reader
+	before_action :role_editor, if: :signed_in?, except: [:index, :checkpoint]
+  before_action :role_reader, if: :signed_in?, except: [:index]
 	before_action :authenticate_user!, except: [:index]
   before_action :modify_user, only: [:edit,:destroy,:update]
 
