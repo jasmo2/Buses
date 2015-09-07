@@ -4,6 +4,11 @@
       <div class="col-lg-12">
 
         <div class="panel-body">
+        <% if  flash[:notice] %>
+            <div class="alert alert-success" role="alert">
+              <%= flash[:notice] %>
+            </div>
+        <% end %>
           <div class="table-responsive">
             <%= form_tag url_for( controller: "buses", action: "bus_assignment") do %>
               <table class="table table-bordered">

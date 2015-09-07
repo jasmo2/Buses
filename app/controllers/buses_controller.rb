@@ -18,6 +18,8 @@ class BusesController < ApplicationController
 
   def bus_assignment
     Bus.update_multiple(params[:user_id],params[:buses_assignment],params[:buses])
+
+    flash[:notice] = "Los buses fueron asignados correctmente"
     redirect_to :back
   end
 
