@@ -9,13 +9,14 @@
 #  user_id       :integer
 #
 
-class Bus < ActiveRecord::Base
+class   Bus < ActiveRecord::Base
   attr_accessor :driver_name
   belongs_to :user
   has_many :operation_dates
   has_many :bus_routes, through: :operation_dates
   validates :id, presence: true
   validates :plate_license, presence: true
+  validates :plate_license, format: { with: /^[a-zA-Z]{3}\d{3}$/, message: "tres letras & 3#s, sin espacio entre ellos"}
   validates :id, numericality: { only_integer: true }
   
 
@@ -25,6 +26,7 @@ class Bus < ActiveRecord::Base
       idd = if buses_assignment[index] == "nil" then nil else id end      
       bus.update(user_id: idd)
     end
+    buses
   end
 
   def self.add_routes(file)
@@ -56,6 +58,9 @@ class Bus < ActiveRecord::Base
   end
 
   private
+  before_validation(on: :create) do
+    self.plate_license = plate_license.split.join if attribute_present?("plate_license")
+  end
   def self.open_spreadsheet(file)
     if file != nil
       case File.extname(file.original_filename)
