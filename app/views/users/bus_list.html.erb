@@ -1,46 +1,51 @@
 <div id="page-wrapper" style="min-height: 650px;">
-  <div class="container-fluid">
+  <div class="container-fluid autobuses">
     <div class="row">
       <div class="col-lg-12">
+        <h1 class="page-header"> <%= link_to "Autobuses", autobuses_path %>
+          <% if current_user.admin? %>
+              <%= link_to new_bus_path, remote: true, class: "btn-lg btn-default" do %>
+                  <i class="fa fa-bus fa-fw"></i> Crear
+              <% end  %>
+          <% end  %>
+        </h1>
+        <%= flash_import(flash) %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row search">
+      <div class="col-lg-12">
 
-        <div class="panel-body">
-          <% if  flash[:notice] %>
-              <div class="alert alert-success" role="alert">
-                <%= flash[:notice] %>
-              </div>
-          <% end %>
-          <div class="table-responsive">
-            <%= form_tag url_for( controller: "buses", action: "bus_assignment") do %>
-                <table class="table table-bordered">
-                  <thead>
-                  <tr>
-                    <th>Placa</th>
-                    <th>Asignar Autobus</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <% if !@buses.blank? %>
-                      <% @buses.each do |bus|  %>
-                          <%= hidden_field_tag "buses[]", bus.id %>
-                          <tr>
-                            <td>
-                              <%= bus.plate_license %>
-                            </td>
-                            <td>
-                              <%= hidden_field_tag "buses_assignment[]", bus.user_id ? bus.id : "nil" %>
-                              <%= check_box_tag("#{bus.id}", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
-                            </td>
-                          </tr>
-                      <% end %>
-                  <% end %>
-                  </tbody>
-                </table>
-                <%= hidden_field_tag 'user_id', @user.id %>
-                <%= submit_tag "Guardar", class:"btn btn-success pull-right" %>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div id="content" class="col-lg-12">
+        <% if !@buses.empty? %>
+            <% @buses.each do |bus| %>
+                <ul class="list-group">
+                  <li class="list-group-item" id="bus_id_<%= bus.id %>">
+                    <div class="btn-group" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default btn-xs disabled">
+                        Bus de placa <strong><%= bus.plate_license %></strong>
+                      </button>
+                       <span class="badge">
+                          <%= link_to bus_path(bus), method: :delete, data: { confirm: 'Esta seguro de eliminar?' }, class: "btn btn-default btn-xs" do %>
+                                 <span class="glyphicon glyphicon-trash" aria-hidden="true">eliminar</span>
+                          <% end %>
+                       </span>
+                        <span class="badge">
+                            <%= link_to edit_bus_path(bus), remote: true , class: "btn btn-default btn-xs" do %>
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true">editar</span>
+                            <% end %>
+                        </span>
+                    </div>
+                  </li>
+                </ul>
             <% end %>
-          </div>
-        </div>
-
+        <% end %>
       </div>
       <!-- /.col-lg-12 -->
     </div>
