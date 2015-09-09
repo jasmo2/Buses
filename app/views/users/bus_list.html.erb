@@ -4,34 +4,39 @@
       <div class="col-lg-12">
 
         <div class="panel-body">
+          <% if  flash[:notice] %>
+              <div class="alert alert-success" role="alert">
+                <%= flash[:notice] %>
+              </div>
+          <% end %>
           <div class="table-responsive">
             <%= form_tag url_for( controller: "buses", action: "bus_assignment") do %>
-              <table class="table table-bordered">
-                <thead>
+                <table class="table table-bordered">
+                  <thead>
                   <tr>
                     <th>Placa</th>
                     <th>Asignar Autobus</th>
                   </tr>
-                </thead>
-                <tbody>
-                <% if !@buses.blank? %>
-                  <% @buses.each do |bus|  %>
-                    <%= hidden_field_tag "buses[]", bus.id %>
-                  <tr>
-                    <td>  
-                      <%= bus.plate_license %>
-                    </td>
-                    <td>
-                      <%= hidden_field_tag "buses_assignment[]", bus.user_id ? bus.id : "nil" %>
-                      <%= check_box_tag("#{bus.id}", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
-                    </td>
-                  </tr>
+                  </thead>
+                  <tbody>
+                  <% if !@buses.blank? %>
+                      <% @buses.each do |bus|  %>
+                          <%= hidden_field_tag "buses[]", bus.id %>
+                          <tr>
+                            <td>
+                              <%= bus.plate_license %>
+                            </td>
+                            <td>
+                              <%= hidden_field_tag "buses_assignment[]", bus.user_id ? bus.id : "nil" %>
+                              <%= check_box_tag("#{bus.id}", value = nil , checked = bus.user_id ? true : false, class: "subscription") %>
+                            </td>
+                          </tr>
+                      <% end %>
                   <% end %>
-                <% end %>
-                </tbody>
-              </table>
-              <%= hidden_field_tag 'user_id', @user.id %>
-              <%= submit_tag "Guardar", class:"btn btn-success pull-right" %>
+                  </tbody>
+                </table>
+                <%= hidden_field_tag 'user_id', @user.id %>
+                <%= submit_tag "Guardar", class:"btn btn-success pull-right" %>
             <% end %>
           </div>
         </div>

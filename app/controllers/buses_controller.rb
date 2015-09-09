@@ -18,6 +18,8 @@ class BusesController < ApplicationController
 
   def bus_assignment
     Bus.update_multiple(params[:user_id],params[:buses_assignment],params[:buses])
+
+    flash[:notice] = "Los buses fueron asignados correctmente"
     redirect_to :back
   end
 
@@ -36,16 +38,16 @@ class BusesController < ApplicationController
     @bus = Bus.new(bus_params)
 
     respond_to do |format|
-       if @bus.save
-          flash[:notice] = 'El bus fué creado exitosamente'
-          format.html {  redirect_to  action: "list_buses" }
-          format.json
-       else   
-          flash[:alert] = 'no se ah podido guardar el autobus'
-          format.html { redirect_to action: 'list_buses'}
-          format.json { render json: @bus.errors, status: :unprocessable_entity }
-       end
-     end
+      if @bus.save
+        flash[:notice] = 'El bus fué creado exitosamente'
+        format.html {  redirect_to  action: "list_buses" }
+        format.json
+      else
+        flash[:alert] = 'no se ah podido guardar el autobus'
+        format.html { redirect_to action: 'list_buses'}
+        format.json { render json: @bus.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def import
@@ -55,8 +57,8 @@ class BusesController < ApplicationController
     rescue ArgumentError => e
       flash[:alert] = e.message
     end
-      redirect_to action: "index", notice: "Rutas importadas"
-  end  
+    redirect_to action: "index", notice: "Rutas importadas"
+  end
 
   private
 
@@ -68,5 +70,5 @@ class BusesController < ApplicationController
   end
   def bus_params
     params.require(:bus).permit(:id,:plate_license,:driver_name)
-  end     
+  end
 end
