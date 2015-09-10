@@ -27,24 +27,31 @@
           <ul class="list-group">
             <% @users.each do |user| %>
               <li class="list-group-item" id="user_id_<%= user.id %>">
-                Usuario: <strong><%= user.username %></strong> <i>(<%= user.role %>)</i>
-                <span class="badge">
-                  <%= link_to user_path(user), remote: true, method: :delete, data: { confirm: 'Esta seguro de eliminar?' }, class: "btn btn-default btn-xs" do %>
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true">eliminar</span>
-                  <% end %>
-                </span>
-                <span class="badge">
-                  <%= link_to edit_user_path(user), remote: true , class: "btn btn-default btn-xs" do %>
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">editar</span>
-                  <% end %>
-                </span>
-                <% if user.reader? %>
-                  <span class="badge">
-                    <%= link_to bus_list_users_path(user) , class: "btn btn-default btn-xs" do %>
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"> Agregar buses</span>
+                <div class="row">
+                  <div class="col-xs-6">
+                    Usuario: <strong><%= user.username %></strong> <i>(<%= user.role %>)</i>
+                  </div>
+                  <div class="col-xs-6">
+
+                    <span class="badge">
+                      <%= link_to user_path(user), remote: true, method: :delete, data: { confirm: 'Esta seguro de eliminar?' }, class: "btn btn-default btn-xs" do %>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true">eliminar</span>
+                      <% end %>
+                    </span>
+                    <span class="badge">
+                      <%= link_to edit_user_path(user), remote: true , class: "btn btn-default btn-xs" do %>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">editar</span>
+                      <% end %>
+                    </span>
+                    <% if user.reader? %>
+                      <span class="badge">
+                        <%= link_to bus_list_users_path(user) , class: "btn btn-default btn-xs" do %>
+                          <span class="glyphicon glyphicon-plus" aria-hidden="true"> Agregar buses</span>
+                        <% end %>
+                      </span>
                     <% end %>
-                  </span>
-                <% end %>
+                  </div>
+                </div>
               </li>
             <% end %>
           </ul>
