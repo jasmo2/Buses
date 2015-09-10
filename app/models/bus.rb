@@ -14,8 +14,9 @@ class Bus < ActiveRecord::Base
   belongs_to :user
   has_many :operation_dates
   has_many :bus_routes, through: :operation_dates
-  validates :id, presence: true
-  validates :plate_license, presence: true, format: { with: /\A[a-zA-Z]{3}\d{3}\z/ }
+  validates :id, presence: true, uniqueness: true
+  validates :plate_license, presence: true, uniqueness: true
+  validates :plate_license, format: { with: /\A[a-zA-Z]{3}\d{3}\z/ }
   validates :id, numericality: { only_integer: true }
   
 
