@@ -58,7 +58,7 @@ class Bus < ActiveRecord::Base
 
   private
   before_validation(on: :create) do
-    self.plate_license = plate_license.split.join if attribute_present?("plate_license")
+    self.plate_license = plate_license.split.join.upcase if attribute_present?("plate_license")
   end
   def self.open_spreadsheet(file)
     if file != nil
