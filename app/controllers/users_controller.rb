@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.admin_save
+		if current_user.admin_save(@user)
 			flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user.attributes = user_params
-		if @user.save
+		if current_user.admin_save(@user)
 			flash[:notice] = "Se ah actualizado el usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else

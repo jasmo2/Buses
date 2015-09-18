@@ -26,15 +26,29 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :username, presence: true, uniqueness: true
   validates :role, presence: true
+  before_save :granted_permissions
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
   has_many :records
 
-  def admin_save(*arg)
-    nil
-    self.role
+  # The method checks if the user that is creting new users is at least 'Admin'
+  def admin_save(new_user)
 
+    if(self.role == "Gerente")
+      return if new_user.save ? true : false
+    elsif (self.role == "Admin" && new_user.role == "Admin")
+      self.errors.add(:base, "Admin Tiene que ser almenos administrador para poder guardar usuarios")
+      return false
+    else
+      return if new_user.save ? true : false    end
   end
+
   private
+  def granted_permissions
+    if self.role != "Gerente" && self.role != "Admin"
+      self.errors.add(:base, "Admin Tiene que ser almenos administrador para poder guardar usuarios")
+      return false
+    end
+  end
 end

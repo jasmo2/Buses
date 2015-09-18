@@ -21,7 +21,7 @@
   
   <%= f.input :username, placeholder: 'usuario', label: "Nombre de usuario" %>
   <%= f.input :email, placeholder: 'ejemplo@coonatra.org', label: "Correo lectronico" %>
-  <%= f.input :role, default: 1,collection: User.roles %>
+  <%= f.input :role, default: 1,collection: User.roles.keys %>
 
   <%= f.input :password, placeholder: 'Contraseña',label: "Contraseña" %>
   <%= f.input :password_confirmation, :label => "confirmación de contraseña", :as => 'password', :input_html => {:name => 'password_confirmation'} %>
