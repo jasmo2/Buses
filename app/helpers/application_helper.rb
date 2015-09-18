@@ -13,7 +13,7 @@ module ApplicationHelper
     if  user_signed_in?
       if cookies[:checkpoint]
         render "layouts/header"
-      elsif current_user.reader? || current_user.admin?
+      elsif  !current_user.Editor?
         render "layouts/header"
       end
     end

@@ -1,25 +1,29 @@
 class UsersController < ApplicationController
 	before_action :role_editor, if: :signed_in?, except: [:index, :checkpoint]
-  before_action :role_reader, if: :signed_in?, except: [:index]
+	before_action :role_reader, if: :signed_in?, except: [:index]
 	before_action :authenticate_user!, except: [:index]
-  before_action :modify_user, only: [:edit,:destroy,:update]
+	before_action :modify_user, only: [:edit,:destroy,:update]
 
 	def index
 		unless user_signed_in?
 			render "index"
 		else
 			case current_user.role
-			when "admin"
-				render "dashboard"
-			when "editor"
-				if cookies[:checkpoint]
-					redirect_to controller: "records", action: "new"
-				else
-					render :checkpoint
-				end
-			when "reader"
+				when "Admin" , "Gerente"
+					render "dashboard"
+				when "Editor"
+					if cookies[:checkpoint]
+						redirect_to controller: "records", action: "new"
+					else
+						render :checkpoint
+					end
+				when "Lector"
 					redirect_to controller: "bus_routes", action: "index"
+				else
+					puts"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+					puts"case not go into"
 			end
+
 		end
 	end
 
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if @user.save
+		if @user.admin_save
 			flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else
@@ -51,7 +55,7 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-	  @user.destroy
+		@user.destroy
 	end
 
 	def list_users
@@ -62,7 +66,7 @@ class UsersController < ApplicationController
 		cookies.permanent[:checkpoint] = checkpoint_params[:checkpoint]
 		redirect_to controller: "records", action: "new"
 	end
-	
+
 	def bus_list
 		@user = User.find(params[:id])
 		@buses = Bus.where('user_id= ? OR user_id IS ?', @user.id, nil)
@@ -73,11 +77,10 @@ class UsersController < ApplicationController
 	private
 
 	def modify_user
-	  @user = User.find(params[:id])
+		@user = User.find(params[:id])
 	end
 
 	def user_params
-		params[:user][:role] = role_converter(params[:user][:role])
 		params.require(:user).permit(:username,:role,:email,:password,:password_confirmation)
 	end
 
@@ -85,12 +88,4 @@ class UsersController < ApplicationController
 		params.permit(:checkpoint)
 	end
 
-	def role_converter(role)
-		case role
-			when "Admin" then role = "admin"
-			when "Editor" then role = "editor"
-			when "Lector" then role = "reader"
-		end
-		return role
-	end
 end

@@ -20,7 +20,8 @@
 #
 
 class User < ActiveRecord::Base
-  enum role: [:admin , :editor , :reader, :gerente]
+  # role: goes from top prority to less priority
+  enum role: [:Gerente , :Admin,  :Lector, :Editor ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :username, presence: true, uniqueness: true
@@ -29,4 +30,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
   has_many :records
+
+  def admin_save(*arg)
+    nil
+    self.role
+
+  end
+  private
 end
