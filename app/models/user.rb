@@ -20,7 +20,7 @@
 #
 
 class User < ActiveRecord::Base
-  enum role: [:admin , :editor , :reader]
+  enum role: [:admin , :editor , :reader, :gerente]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :username, presence: true, uniqueness: true
