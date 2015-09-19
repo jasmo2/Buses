@@ -1,5 +1,15 @@
 module UsersHelper
-	def resource_name
+	def role_assigment_limitation(current_user)
+    roles = User.roles.keys
+
+    if current_user.Admin?
+      roles.delete("Gerente")
+      roles.delete("Admin")
+    end
+    roles
+  end
+
+  def resource_name
     :user
   end
 
