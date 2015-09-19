@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 	end
 
 	def list_users
-		@users = User.all
+		@users = User.all_by_role(current_user)
 	end
 
 	def checkpoint
