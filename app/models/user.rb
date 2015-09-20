@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :username, presence: true, uniqueness: true
   validates :role, presence: true
-  before_save :granted_permissions
+  # before_save :granted_permissions
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
