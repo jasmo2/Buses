@@ -17,7 +17,6 @@ class Record < ActiveRecord::Base
   belongs_to :bus
   validates_presence_of :bus, message: " no registrado"
   validates :quantity, presence: true
-  validates :user_id, presence: true
   validates :bus_id, presence: true
   enum register_type: [:terminal, :control]
   before_validation :register_type_N_time, :register_type_N_date
@@ -33,9 +32,9 @@ class Record < ActiveRecord::Base
       self.register_time = Time.now.in_time_zone(-5)
     end
   end
-  def register_type_N_date
-    if self.register_date == nil
-      self.register_date = Time.now.in_time_zone(-5).to_date
-    end
-  end
+  # def register_type_N_date
+  #   if self.register_date == nil
+  #     self.register_date = Time.now.in_time_zone(-5).to_date
+  #   end
+  # end
 end

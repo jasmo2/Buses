@@ -37,7 +37,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :buses
-  has_many :records
 
   # The method checks if the user that is creating new users is at least 'Admin'
   def admin_save(new_user)
