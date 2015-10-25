@@ -24,16 +24,42 @@
         </div>
         <div class="col-sm-4">
           <div class="row">
-            <div class="col-sm-3">
-              <p>Fecha</p>
+            <div class="col-sm-12">
+              <p>Fecha inicial</p>
             </div>
             <div class="col-sm-9">
-              <%=  date_field_tag 'date-route-bus' %>
+              <div class="form-group">
+                <div class='input-group date' id='initial-date'>
+                  <input id='initial-date-input' name='initial-date-input' type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
-          <%= submit_tag "Ingresar", class: "btn btn-primary full-length" %>
+          <div class="row">
+            <div class="col-sm-12">
+              <p>Fecha final</p>
+            </div>
+            <div class="col-sm-9">
+              <div class="form-group">
+                <div class='input-group date' id='final-date'>
+                  <input id='final-date-input' name='final-date-input' type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="col-sm-12">
+          <br>
+          <%= submit_tag "Ingresar", class: "btn btn-primary btn-block" %>
         </div>
       <!-- /.col-lg-12 -->
       <% end %>
@@ -54,3 +80,4 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" link="records.js"></script>

@@ -3,8 +3,7 @@
   // You can use CoffeeScript in this file: http://coffeescript.org/
 var recordTable = function () {
   // Actions to do
-    $('#records-table').DataTable(
-      {
+    $('#records-table').DataTable({
         bLengthChange: false, 
         bFilter: false, 
         bInfo: false,
@@ -15,5 +14,6 @@ var recordTable = function () {
 };
 $(document).on('ready page:load', function () {
   // recordTable();
-  $('#date-route-bus').pickadate()
+  $('#initial-date').datetimepicker({sideBySide: true});
+  $('#final-date').datetimepicker({sideBySide: true});
 });

@@ -13,7 +13,7 @@
       <% @buses.map do |bus| %>
         <td><%= bus.id %></td>
         <td>
-          <%= link_to "",  data_list_path, remote: true %>
+          <%= link_to "",  data_list_path, remote: true do %>
             <%= bus.license_plate %><i class="fa fa-chevron-right fa-2x"></i>
           <% end %>
         </td>

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.0.0'
+ruby '2.2.2'
 gem 'rails', '4.2.0'
 #PostgreSQL
 gem 'pg'
@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Twitter-Bootstrap and Sass
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'jquery-datatables-rails', '~> 3.3.0'

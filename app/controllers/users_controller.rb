@@ -23,7 +23,6 @@ class UsersController < ApplicationController
 					puts"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 					puts"case not go into"
 			end
-
 		end
 	end
 
