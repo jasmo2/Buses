@@ -14,6 +14,7 @@ var recordTable = function () {
 };
 $(document).on('ready page:load', function () {
   // recordTable();
-  $('#initial-date').datetimepicker({sideBySide: true});
-  $('#final-date').datetimepicker({sideBySide: true});
+    $('#initial-date').datetimepicker({sideBySide: true, format: "YYYY-MM-DD\THH:mm:ss"});
+    $('#final-date').datetimepicker({sideBySide: true, format: "YYYY-MM-DD\THH:mm:ss"});
+
 });
