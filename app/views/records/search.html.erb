@@ -9,59 +9,112 @@
     </div>
     <div id='search-block' class="row">
       <%= form_tag get_records_path, method: :get, remote: true do %>
-        <div class="col-sm-4">
-          <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3">
-              <p>Bus</p>
-            </div>
-            <div class="col-sm-6">
-              <div class="select-style">
-                <%= select_tag "bus_id", options_from_collection_for_select(@buses, "id", "plate_license") %>
+          <div class="hidden-xs hidden-sm">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <p>Bus</p>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <p>Fecha inicial</p>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <p>Fecha final</p>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>Fecha inicial</p>
-            </div>
-            <div class="col-sm-9">
-              <div class="form-group">
-                <div class='input-group date' id='initial-date'>
-                  <input id='initial-date-input' name='initial-date-input' type='text' class="form-control" />
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <div class="select-style">
+                  <%= select_tag "bus_id", options_from_collection_for_select(@buses, "id", "plate_license") %>
+                </div>
+                <br>
+                <div class="select-style">
+                  <%= select_tag "bus_id", options_from_collection_for_select(@buses, "id", "id") %>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                  <div class='input-group date' id='initial-date'>
+                    <input id='initial-date-input' name='initial-date-input' type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>Fecha final</p>
-            </div>
-            <div class="col-sm-9">
-              <div class="form-group">
-                <div class='input-group date' id='final-date'>
-                  <input id='final-date-input' name='final-date-input' type='text' class="form-control" />
+              <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                  <div class='input-group date' id='final-date'>
+                    <input id='final-date-input' name='final-date-input' type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <br>
+                <%= submit_tag "Ingresar", class: "btn btn-primary btn-block" %>
+              </div>
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="col-sm-12">
-          <br>
-          <%= submit_tag "Ingresar", class: "btn btn-primary btn-block" %>
-        </div>
-      <!-- /.col-lg-12 -->
+          <!-- -->
+          <div class="hidden-md hidden-lg">
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                  <p>Bus</p>
+                </div>
+                <div class="col-sm-6">
+                  <div class="select-style">
+                    <%= select_tag "bus_id", options_from_collection_for_select(@buses, "id", "plate_license") %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p>Fecha inicial</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <div class='input-group date' id='initial-date'>
+                      <input id='initial-date-input' name='initial-date-input' type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p>Fecha final</p>
+                </div>
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <div class='input-group date' id='final-date'>
+                      <input id='final-date-input' name='final-date-input' type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <br>
+              <%= submit_tag "Ingresar", class: "btn btn-primary btn-block" %>
+            </div>
+            <!-- /.col-lg-12 -->
+          </div>
       <% end %>
     </div>
     <!-- form_tag -->
@@ -70,12 +123,12 @@
         <div class="records-display">
           <div class="panel-body">
             <div id="recordsTable_wrapper" class="dataTable_wrapper">
-             
+
             </div>
           </div>
-        <!-- /.records_display -->
+          <!-- /.records_display -->
         </div>
-      <!-- /.col-lg-12 -->
+        <!-- /.col-lg-12 -->
       </div>
     </div>
   </div>
