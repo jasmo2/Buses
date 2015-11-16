@@ -3,8 +3,8 @@ class ExternalConnection
     include ActiveModel::Serialization
     attr_reader :args
    def initialize(args={})
-     args[:fecha_f] = Time.parse(args[:fecha_f]).to_i
-     args[:fecha_i] = Time.parse(args[:fecha_i]).to_i
+     args[:fecha_f] = Time.parse(args[:fecha_f]+"T23:59:00.000").to_i
+     args[:fecha_i] = Time.parse(args[:fecha_i]+"T03:00:00.000").to_i
      @args = args
    end
 
