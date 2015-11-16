@@ -6,7 +6,13 @@ class RecordsController < ApplicationController
   end
 
   def data_list
-    @records = Record.where(bus_id: params["bus_id"], register_date: params["date-route-bus"])
+    @records_external_connection = ExternalConnection.new(
+        bus_id: params[:bus_id],
+        fecha_f: params['initial-date-input'],
+        fecha_i: params['initial-date-input'],
+        url: ENV['COONATRA_API']
+    )
+    @passenger_quantity = JSON.parse(@records_external_connection.send_data)
     render "data_list.js.erb"
   end
 
