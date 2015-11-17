@@ -10,6 +10,13 @@ class ExternalConnection
 
   def send_data
     url = URI.parse("#{@args[:url]}/bus_id/#{@args[:bus_id]}/fecha_i/#{@args[:fecha_i]}/fecha_f/#{@args[:fecha_f]}")
+    puts ""
+    puts "@args[:url: #{@args[:url]}"
+    puts "@args[:bus_id]}: #{@args[:bus_id]}"
+    puts "@args[:fecha_i]: #{@args[:fecha_i]}"
+    puts "@args[:fecha_f]: #{@args[:fecha_f]} "
+    puts "url: #{url} "
+    puts ""
     req = Net::HTTP::Get.new(url, initheader = {'Content-Type' =>'application/json'})
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
