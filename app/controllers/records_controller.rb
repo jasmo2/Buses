@@ -6,7 +6,6 @@ class RecordsController < ApplicationController
   end
 
   def data_list
-
     @records_external_connection = ExternalConnection.new(
         bus_id: params[:bus_id] ,
         fecha_f: params['initial-date-input'],

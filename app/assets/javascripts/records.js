@@ -4,8 +4,6 @@
 
 
 $(document).on('ready page:load', function () {
-
-
     var targetDate =  $('.initial-date'),
         today = moment().toISOString();
         $progresBar = $("#passenger_wrapper .progress");
@@ -29,9 +27,17 @@ $(document).on('ready page:load', function () {
             type: this.method.toUpperCase(),
             url: $(this).attr('action'), //sumbits it to the given url of the form
             data: valuesToSubmit
-        }).success(function(json){
-            console.log("success", json);
-        });
+        })
+            .success(function(json){
+                console.log("success", json);
+            })
+            .error(function(err){
+                $("#comunication-error").show();
+            })
+            .always(function(){
+                $("#passenger_wrapper .progress").hide();
+                document.getElementById("passenger-quantity").disabled = false;
+            });
         return false; // prevents
     })
 });
