@@ -6,8 +6,13 @@ class RecordsController < ApplicationController
   end
 
   def data_list
+    puts ""
+    puts "bus_id: #{params[:bus_id]} "
+    puts "params['initial-date-input']: #{params['initial-date-input']} "
+    puts "url: #{ENV['COONATRA_API']} "
+    puts ""
     @records_external_connection = ExternalConnection.new(
-        bus_id: params[:bus_id],
+        bus_id: params[:bus_id] ,
         fecha_f: params['initial-date-input'],
         fecha_i: params['initial-date-input'],
         url: ENV['COONATRA_API']
