@@ -18,10 +18,15 @@ class ExternalConnection
     puts "@args[:fecha_f]: #{@args[:fecha_f]} "
     puts "url: #{url} "
     puts ""
-    req = Net::HTTP::Get.new(url, initheader = {'Content-Type' =>'application/json'})
-    res = Net::HTTP.start(url.host, url.port) {|http|
-      http.request(req)
-    }
-    return res.body
+    begin
+      req = Net::HTTP::Get.new(url, initheader = {'Content-Type' =>'application/json'})
+      res = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(req)
+      }
+      return res.body
+    rescue TypeError => e
+      puts "TypeError Catched: #{e}"
+    end
+    nil
   end
 end
