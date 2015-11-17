@@ -32,6 +32,7 @@ $(document).on('ready page:load', function () {
                 console.log("success", json);
             })
             .error(function(err){
+                console.log("error", err);
                 $("#comunication-error").show();
             })
             .always(function(){
