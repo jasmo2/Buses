@@ -19,7 +19,7 @@ $(document).on('ready page:load', function () {
         btns: [ 'bus_id', 'bus_license_plate']
     });
     crossButtons.init();
-    $('form').submit(function() {
+    $('#passenger-quantity-form').submit(function() {
         $progresBar.show();
         this.disabled = true
         var valuesToSubmit = $(this).serialize();
