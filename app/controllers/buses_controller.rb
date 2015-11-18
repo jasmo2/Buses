@@ -1,3 +1,4 @@
+require 'json'
 class BusesController < ApplicationController
   before_action :role_editor
   before_action :role_reader
@@ -17,10 +18,15 @@ class BusesController < ApplicationController
   end
 
   def bus_assignment
-    Bus.update_multiple(params[:user_id],params[:buses_assignment],params[:buses])
-
-    flash[:notice] = "Los buses fueron asignados correctmente"
-    redirect_to :back
+    respond_to do |format|
+      format.json {
+        buses =  assignment_buses
+        Bus.update(buses.keys,buses.values)
+        render json: nil, status: :ok
+      }
+    end
+    # flash[:notice] = "Los buses fueron asignados correctmente"
+    # redirect_to :back
   end
 
   def update
@@ -71,4 +77,13 @@ class BusesController < ApplicationController
   def bus_params
     params.require(:bus).permit(:id,:plate_license,:driver_name)
   end
+  def assignment_buses
+    buses = Hash.new
+    params['buses_assignment'].each do |bus|
+      buses[bus[0].to_s] = {"user_id" => bus[1]["user_id"].to_s == "" ? nil :  bus[1]["user_id"].to_i}
+    end
+    buses
+  end
+
+
 end

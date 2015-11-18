@@ -20,13 +20,6 @@ class Bus < ActiveRecord::Base
   validates :id, numericality: { only_integer: true }
   
 
-  def self.update_multiple(id,buses_assignment,buses)
-    buses.each_with_index do |bus_id,index|
-      bus = find(bus_id) if bus_id != "nil"
-      idd = if buses_assignment[index] == "nil" then nil else id end      
-      bus.update(user_id: idd)
-    end
-  end
 
   def self.add_routes(file)
     spreadsheet = open_spreadsheet(file)
