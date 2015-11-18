@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.2.2'
+ruby '2.2.0'
 gem 'rails', '4.2.0'
 #PostgreSQL
-gem 'pg'
+gem 'pg', '0.18.1'
 # Locale data for Ruby on Rails I18n 
 gem 'rails-i18n', '~> 4.0.0'
 
@@ -16,24 +16,24 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Twitter-Bootstrap and Sass
-gem 'font-awesome-rails'
-gem 'bootstrap-sass'
+gem 'font-awesome-rails', '4.3.0.0'
+gem 'bootstrap-sass', '3.3.4.1'
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
-gem 'sass-rails'
-gem 'simple_form'
-gem 'jquery-datatables-rails', '~> 3.3.0'
+gem 'bootstrap3-datetimepicker-rails', '4.17.37'
+gem 'sass-rails', '5.0.2'
+gem 'simple_form', '3.1.0'
+gem 'jquery-datatables-rails', '3.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '4.0.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'table_print'
+gem 'table_print', '1.5.3'
 # Authentication with devise
-gem 'devise'
+gem 'devise', '3.4.1'
 # Excel import/export
 gem 'roo', '~> 2.0.0'
 # Use ActiveModel has_secure_password
@@ -42,8 +42,8 @@ gem 'roo', '~> 2.0.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-gem 'rails_12factor', group: :production
-gem 'puma'
+gem 'rails_12factor','0.0.3', group: :production
+gem 'puma', '2.15.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :development, :test do

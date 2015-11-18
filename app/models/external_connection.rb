@@ -27,6 +27,6 @@ class ExternalConnection
     rescue TypeError => e
       puts "TypeError Catched: #{e}"
     end
-    nil
+    return 0
   end
 end
