@@ -30,6 +30,7 @@ class BusesController < ApplicationController
   end
 
   def update
+    Bus.update(params[:id], bus_params)
     redirect_to action: "list_buses"
   end
   def destroy
