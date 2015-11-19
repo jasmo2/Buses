@@ -34,9 +34,10 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if current_user.admin_save(@user)
 			puts "se ha creado el usuario #{@user.username} con id: #{@user.id}"
-			flash[:notice] = "Se ah creado el nuevo usuario #{@user.username}"
+			flash[:notice] = "Se a creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else
+			flash[:alert] = "El usuario #{@user.username} no puso ser creado, revise su conexión"
 			render "new"
 		end
 	end
