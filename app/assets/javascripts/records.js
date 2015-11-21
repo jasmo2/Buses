@@ -10,6 +10,7 @@ $(document).on('ready page:load', function () {
 
     // format: "YYYY-MM-DD\THH:mm:ss\Z"
     targetDate.datetimepicker({
+        ignoreReadonly: true,
         sideBySide: true,
         format: "YYYY-MM-DD",
         maxDate: today,
