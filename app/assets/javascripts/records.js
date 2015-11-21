@@ -6,7 +6,8 @@
 $(document).on('ready page:load', function () {
     var targetDate =  $('.initial-date'),
         today = moment().toISOString();
-        $progresBar = $("#passenger_wrapper .progress");
+        $progresBar = $("#passenger_wrapper .progress"),
+        $passangerInfo =  $("#passenger-info");
 
     // format: "YYYY-MM-DD\THH:mm:ss\Z"
     targetDate.datetimepicker({
@@ -21,6 +22,7 @@ $(document).on('ready page:load', function () {
     });
     crossButtons.init();
     $('#passenger-quantity-form').submit(function() {
+        $passangerInfo.hide();
         $progresBar.show();
         this.disabled = true
         var valuesToSubmit = $(this).serialize();
