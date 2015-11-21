@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 						render :checkpoint
 					end
 				when "Lector"
-					redirect_to controller: "bus_routes", action: "index"
+					redirect_to controller: "records", action: "search"
 				else
 					puts"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 					puts"case not go into"
