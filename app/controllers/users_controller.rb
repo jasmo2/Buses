@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 			flash[:notice] = "Se a creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else
-			flash[:alert] = "El usuario #{@user.username} no puso ser creado, revise su conexión"
+			flash[:alert] = "El usuario #{@user.username} no pudo ser creado, revise su conexión"
 			render "new"
 		end
 	end
