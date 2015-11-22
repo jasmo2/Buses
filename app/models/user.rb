@@ -40,15 +40,13 @@ class User < ActiveRecord::Base
 
   # The method checks if the user that is creating new users is at least 'Admin'
   def admin_save(new_user)
-    puts '∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆'
-    puts "User #{self.username} role: #{self.role} ;\n is trying to save #{new_user}"
     if self.role == 'Gerente'
-      return if  print_save(new_user.save) ? true : false
+      return if  user_save(new_user)
     elsif self.role == 'Admin' && new_user.role == 'Admin'
       self.errors.add(:base, 'el usuario tiene que ser al menos administrador para poder guardar usuarios')
       return false
     else
-      return new_user.save ? true : false
+      return user_save(new_user)
     end
   end
 
@@ -70,8 +68,14 @@ class User < ActiveRecord::Base
         false
     end
   end
-  def print_save user_save
-    puts "save?: #{user_save}"
-    user_save
+  def user_save user_save
+    puts '∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆'
+    puts "User #{self.username} role: #{self.role} ;\n is trying to save #{user_save}"
+    user_save.save
+    result = !User.where(:id => user_save.id).blank?
+
+    puts "save?: #{user_save.username}; #{result}"
+
+    result
   end
 end
