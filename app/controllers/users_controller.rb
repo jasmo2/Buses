@@ -34,8 +34,9 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		autorize_user = AutorizeCreation.new(current_user)
-
-		if autorize_user.admin_save(@user)
+		bool = autorize_user.admin_save(@user)
+		puts "controller; #{bool}"
+		if bool
 			puts "se ha creado el usuario #{@user.username} con id: #{@user.id}"
 			flash[:notice] = "Se a creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
