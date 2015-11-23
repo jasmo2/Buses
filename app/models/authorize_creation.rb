@@ -8,7 +8,7 @@ class AutorizeCreation
 
   def admin_save(new_user)
     if @current_user.role == 'Gerente'
-      return if  user_save(new_user)
+      return user_save(new_user)
     elsif @current_user.role == 'Admin' && new_user.role == 'Admin'
       @current_user.errors.add(:base, 'el usuario tiene que ser al menos administrador para poder guardar usuarios')
       return false
