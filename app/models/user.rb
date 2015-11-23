@@ -39,16 +39,7 @@ class User < ActiveRecord::Base
   has_many :buses
 
   # The method checks if the user that is creating new users is at least 'Admin'
-  def admin_save(new_user)
-    if self.role == 'Gerente'
-      return if  user_save(new_user)
-    elsif self.role == 'Admin' && new_user.role == 'Admin'
-      self.errors.add(:base, 'el usuario tiene que ser al menos administrador para poder guardar usuarios')
-      return false
-    else
-      return user_save(new_user)
-    end
-  end
+
 
   def self.all_by_role(current_user)
     if current_user.Gerente?
@@ -68,14 +59,5 @@ class User < ActiveRecord::Base
         false
     end
   end
-  def user_save user_save
-    puts '∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆∆'
-    puts "User #{self.username} role: #{self.role} ;\n is trying to save #{user_save}"
-    user_save.save
-    result = !User.where(:id => user_save.id).blank?
 
-    puts "save?: #{user_save.username}; #{result}"
-
-    result
-  end
 end

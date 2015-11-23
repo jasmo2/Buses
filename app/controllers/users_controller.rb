@@ -1,3 +1,4 @@
+require 'authorize_creation'
 class UsersController < ApplicationController
 	before_action :role_editor, if: :signed_in?, except: [:index, :checkpoint]
 	before_action :role_reader, if: :signed_in?, except: [:index]
@@ -32,7 +33,9 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		if current_user.admin_save(@user)
+		autorize_user = AutorizeCreation.new(current_user)
+
+		if autorize_user.admin_save(@user)
 			puts "se ha creado el usuario #{@user.username} con id: #{@user.id}"
 			flash[:notice] = "Se a creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
