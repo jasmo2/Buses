@@ -14,6 +14,7 @@ $(document).on('ready page:load', function () {
         ignoreReadonly: true,
         sideBySide: true,
         format: "YYYY-MM-DD",
+        locale: 'es',
         maxDate: today,
         defaultDate: today
     });
