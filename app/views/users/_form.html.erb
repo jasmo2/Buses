@@ -17,6 +17,7 @@
 #
  -->
 <%= simple_form_for @user do |f| %>
+    <br> <br>
   <%= f.error_notification %>
   
   <%= f.input :username, placeholder: 'usuario', label: "Nombre de usuario" %>
@@ -24,8 +25,8 @@
     <!-- The helper limitation role_assigment_limitation by assignation-->
   <%= f.input :role, default: 1,collection: role_assigment_limitation(@current_user) %>
 
-  <%= f.input :password, placeholder: 'Contraseña',label: "Contraseña" %>
-  <%= f.input :password_confirmation, :label => "confirmación de contraseña", :as => 'password', :input_html => {:name => 'password_confirmation'} %>
+  <%= f.input :password, placeholder: 'Contraseña',label: "Contraseña" ,:required=> true%>
+  <%= f.input :password_confirmation, :label => "confirmación de contraseña",:required=> true, :as => 'password', :input_html => {:name => 'password_confirmation'} %>
 
   
 

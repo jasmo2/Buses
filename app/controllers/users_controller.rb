@@ -34,9 +34,8 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		autorize_user = AutorizeCreation.new(current_user)
-		bool = autorize_user.admin_save(@user)
-		puts "controller; #{bool}"
-		if bool
+
+		if autorize_user.admin_save(@user)
 			puts "se ha creado el usuario #{@user.username} con id: #{@user.id}"
 			flash[:notice] = "Se a creado el nuevo usuario #{@user.username}"
 			redirect_to action: "list_users"
@@ -51,10 +50,12 @@ class UsersController < ApplicationController
 
 	def update
 		@user.attributes = user_params
-		if current_user.admin_save(@user)
+		autorize_user = AutorizeCreation.new(current_user)
+		if autorize_user.admin_save(@user)
 			flash[:notice] = "Se ah actualizado el usuario #{@user.username}"
 			redirect_to action: "list_users"
 		else
+			flash[:alert] = "El usuario #{@user.username} no pudo ser actualizado, revise su conexión"
 			render "new"
 		end
 	end
